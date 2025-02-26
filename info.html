@@ -240,7 +240,7 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-blue-900">
-                                  {{ tgArray[4] }}
+                                  {{ tgArray[5] }}
                                 </span>
                                 <span class="text-blue-900">
                                   未
@@ -275,7 +275,7 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-blue-900">
-                                  {{ tgArray[5] }}
+                                  {{ tgArray[6] }}
                                 </span>
                                 <span class="text-blue-900">
                                   申
@@ -353,7 +353,7 @@
                                 </div>
                                 <div class="flex justify-center">
                                   <span class="text-blue-900">
-                                    {{ tgArray[2] }}
+                                    {{ tgArray[1] }}
                                   </span>
                                   <span class="text-blue-900">
                                     卯
@@ -479,7 +479,7 @@
                                 </div>
                                 <div class="flex justify-center">
                                   <span class="text-blue-900">
-                                    {{ tgArray[8] }}
+                                    {{ tgArray[7] }}
                                   </span>
                                   <span class="text-blue-900">
                                     酉
@@ -518,7 +518,7 @@
                                 </div>
                                 <div class="flex justify-center">
                                   <span class="text-blue-900">
-                                    {{ tgArray[9] }}
+                                    {{ tgArray[8] }}
                                   </span>
                                   <span class="text-blue-900">
                                     戌
@@ -561,7 +561,7 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-blue-900">
-                                  {{ tgArray[1] }}
+                                  {{ tgArray[0] }}
                                 </span>
                                 <span class="text-blue-900">
                                   寅
@@ -596,7 +596,7 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-blue-900">
-                                  {{ tgArray[12] }}
+                                  {{ tgArray[11] }}
                                 </span>
                                 <span class="text-blue-900">
                                   丑
@@ -634,7 +634,7 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-blue-900">
-                                  {{ tgArray[11] }}
+                                  {{ tgArray[10] }}
                                 </span>
                                 <span class="text-blue-900">
                                   子
@@ -673,7 +673,7 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-blue-900">
-                                  {{ tgArray[10] }}
+                                  {{ tgArray[9] }}
                                 </span>
                                 <span class="text-blue-900">
                                   亥
@@ -709,14 +709,17 @@
       </script> -->
     <script>
       const { createApp } = Vue;
+      const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+      const diZhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+      const twelveHouse = ['寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥', '子', '丑'];
 
       function getTG(index) {
-        const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+        //const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
         return tianGan[index - 1];
       }
 
       function getDZ(index) {
-        const diZhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+        //const diZhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
         return diZhi[index - 1];
       }
 
@@ -763,30 +766,109 @@
             console.log(this.sex);
             console.log(this.calendar);
             console.log(this.leap);
-            let solar, theLunar;
+            let solar, theLunar, isLeap, theLeapMonth, theLunarMonth;
+            isLeap = false;
             // 國曆農曆轉換
             if (this.calendar === 'solar') {
               theYear = LunarYear.fromYear(Number(this.birthYear) + 1911); // 判斷年是否有閏月
-              if (theYear.getLeapMonth() != 0) {
+              theLeapMonth = theYear.getLeapMonth();
+              if (theLeapMonth != 0) {
+                isLeap = true;      
+                theLunarMonth = theLeapMonth;          
                 theLunar = Lunar.fromDate(new Date((Number(this.birthYear) + 1911).toString() + '-' + this.birthMonth.toString() + '-' + this.birthDay.toString()));
               } else {
                 theSolar = Solar.fromYmdHms(this.birthYear + 1911 , this.birthMonth, this.birthDay, this.birthHour, 0, 0);
                 theLunar = theSolar.getLunar();
+                theLunarMonth = theLunar.getMonth();
               }
             } else {
                 if (this.leap) {
-                theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth) * -1, Number(this.birthDay), Number(this.birthHour), 0, 0);
-              } else {
-                theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth), Number(this.birthDay), Number(this.birthHour), 0, 0);
-              }
+                  isLeap = true;
+                  theLeapMonth = Number(this.birthMonth);
+                  theLunarMonth = theLeapMonth;
+                  theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth) * -1, Number(this.birthDay), Number(this.birthHour), 0, 0);
+                } else {
+                  theLunarMonth = Number(this.birthMonth);
+                  theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth), Number(this.birthDay), Number(this.birthHour), 0, 0);
+                }
             }
             //const solar = Solar.fromDate(new Date(this.birthYear + 1911 + '-' + this.birthMonth + '-' + this.birthDay));
             //const lunar = solar.getLunar();
-            this.addToArray('甲');
-            this.addToArray('乙');
-            this.addToArray('丙');
+            yearGan = theLunar.getYearGan();
+            yearZhi = theLunar.getYearZhi();            
+
+            tianGan.forEach(function(value, index, array) {              
+              if (value == yearGan) {                   
+                YGanIndex = getFirstMonthTG(index + 1);                
+              }
+            });
+
+            tgArray = [];
+            aryCounter = [1,2,3,4,5,6,7,8,9,10];
+            ganCounter = 0;
+            for (var i of aryCounter) {
+              if (YGanIndex <= i) {
+                this.addToArray(getTG(i));
+                ganCounter++;
+              }
+            }
+            oriIndex = 1
+            //console.log('ganCounter:' + ganCounter);
+            while (ganCounter <= 11) {
+              this.addToArray(getTG(oriIndex));
+              ganCounter++; 
+              oriIndex++;                 
+            }          
+            
             console.log(this.tgArray);
             console.log(theLunar.toString());
+
+            //推算命宮身宮和命宮干支                                              
+            if (theLunarMonth <= 10)
+              console.log(diZhi[theLunarMonth+1]); //出生月份起算子時
+            else {
+              if (theLunarMonth == 11)
+                console.log(diZhi[0]); //出生月份起算子時
+              else if (theLunarMonth == 12)
+                console.log(diZhi[1]); //出生月份起算子時
+            }
+            //逆算命宮
+            theBirthHourIndex = Number(this.birthHour)/2;
+            console.log(theBirthHourIndex);
+            if (theBirthHourIndex == 0) {
+              console.log(555);
+              MingGongIndex = theLunarMonth;
+              ShengGongIndex = theLunarMonth;
+            } else {
+              if (theLunarMonth >= (theBirthHourIndex + 1)) {
+                console.log(666);
+                MingGongIndex = theLunarMonth - theBirthHourIndex - 1;              
+              } else {
+                console.log(777);
+                MingGongIndex = 12-(theBirthHourIndex-(theLunarMonth-1));              
+              }
+            }
+            console.log(this.tgArray[MingGongIndex]);
+            console.log(twelveHouse[MingGongIndex]);
+
+            //順算身宮
+            if (theBirthHourIndex != 0) {
+              if (theLunarMonth >= (theBirthHourIndex + 1)) {
+                console.log(888);
+                ShengGongIndex = theBirthHourIndex-(12-theLunarMonth)-1;                       
+              } else {
+                console.log(999);
+                ShengGongIndex = theBirthHourIndex-(12-theLunarMonth)-1;                                                    
+              }
+            } 
+            console.log('身宮：');
+            console.log(this.tgArray[ShengGongIndex]);
+            console.log(twelveHouse[ShengGongIndex]);
+            
+            
+             
+            
+
           },
           addToArray(item) {
             this.tgArray.push(item);
