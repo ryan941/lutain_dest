@@ -759,11 +759,15 @@
             if (this.calendar === 'solar') {
               console.log((Number(this.birthYear) + 1911).toString());
               a = LunarYear.fromYear(Number(this.birthYear) + 1911);
-              console.log(a.getLeapMonth());
-              //console.log(solar.getMonth());              
-              theSolar = Solar.fromYmdHms(this.birthYear + 1911 , this.birthMonth, this.birthDay, this.birthHour, 0, 0);
-              theLunar = theSolar.getLunar();
-
+              if (a.getLeapMonth() != 0) {
+                console.log(999);
+                //console.log(a.getLeapMonth());              
+                theLunar = Lunar.fromDate(new Date((Number(this.birthYear) + 1911).toString() + '-' + this.birthMonth.toString() + '-' + this.birthDay.toString()));
+              } else {
+                console.log(888);
+                theSolar = Solar.fromYmdHms(this.birthYear + 1911 , this.birthMonth, this.birthDay, this.birthHour, 0, 0);
+                theLunar = theSolar.getLunar();
+              }
             } else {
                 if (this.leap) {
                 console.log(this.birthYear + 1911);
@@ -775,7 +779,7 @@
             }
             //const solar = Solar.fromDate(new Date(this.birthYear + 1911 + '-' + this.birthMonth + '-' + this.birthDay));
             //const lunar = solar.getLunar();
-            console.log(theLunar.toFullString());
+            console.log(theLunar.toString());
           },
           addToArray(item) {
             this.tgArray.push(item);
