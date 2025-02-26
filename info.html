@@ -52,13 +52,13 @@
                           </div>
                           <div class="grid xl:grid-cols-3 xl:gap-4 my-3">
                             <div class="relative z-0 w-full group flex items-center">
-                              <input v-model="calendar" id="solar" class="peer/draft mr-1" type="radio" name="calendar" value="solar" />
+                              <input @click="solarClick" v-model="calendar" id="solar" class="peer/draft mr-1" type="radio" name="calendar" value="solar" />
                               <label for="solar" class="peer-checked/draft:text-sky-500 mr-8">陽曆</label>
                             
-                              <input v-model="calendar" id="moon" class="peer/published mr-1" type="radio" name="calendar" value="moon" checked />
+                              <input @click="lunarClick" v-model="calendar" id="moon" class="peer/published mr-1" type="radio" name="calendar" value="moon" checked />
                               <label for="moon" class="peer-checked/published:text-sky-500 mr-8">陰曆</label>
                               <label class="flex items-center">
-                                <input v-model="leap" type="checkbox" class="rounded-sm mr-1"> 閏
+                                <input v-model="leap" type="checkbox" class="rounded-sm mr-1" :disabled="leapDisable"> 閏
                               </label>
                             </div>
                           </div>
@@ -739,6 +739,7 @@
             birthDZ: 0, // 生辰地支
             sex: 0, // 性別
             leap: false, // 閏月
+            leapDisable: false, // 閏月不可選
             calendar: 'lunar', // 陽曆/陰曆
             birthYear: 70,
             birthMonth: 10,
@@ -747,6 +748,14 @@
           };
         },
         methods: {
+          // 如果是國曆，則閏不可選
+          solarClick() {
+            this.leap = false;
+            this.leapDisable = true;
+          },
+          lunarClick() {
+            this.leapDisable = false;
+          },
           calculate() {
             console.log(this.birthYear);
             console.log(this.birthMonth);
@@ -757,28 +766,26 @@
             let solar, theLunar;
             // 國曆農曆轉換
             if (this.calendar === 'solar') {
-              console.log((Number(this.birthYear) + 1911).toString());
-              a = LunarYear.fromYear(Number(this.birthYear) + 1911);
-              if (a.getLeapMonth() != 0) {
-                console.log(999);
-                //console.log(a.getLeapMonth());              
+              theYear = LunarYear.fromYear(Number(this.birthYear) + 1911); // 判斷年是否有閏月
+              if (theYear.getLeapMonth() != 0) {
                 theLunar = Lunar.fromDate(new Date((Number(this.birthYear) + 1911).toString() + '-' + this.birthMonth.toString() + '-' + this.birthDay.toString()));
               } else {
-                console.log(888);
                 theSolar = Solar.fromYmdHms(this.birthYear + 1911 , this.birthMonth, this.birthDay, this.birthHour, 0, 0);
                 theLunar = theSolar.getLunar();
               }
             } else {
                 if (this.leap) {
-                console.log(this.birthYear + 1911);
                 theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth) * -1, Number(this.birthDay), Number(this.birthHour), 0, 0);
               } else {
-                console.log(222);
                 theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth), Number(this.birthDay), Number(this.birthHour), 0, 0);
               }
             }
             //const solar = Solar.fromDate(new Date(this.birthYear + 1911 + '-' + this.birthMonth + '-' + this.birthDay));
             //const lunar = solar.getLunar();
+            this.addToArray('甲');
+            this.addToArray('乙');
+            this.addToArray('丙');
+            console.log(this.tgArray);
             console.log(theLunar.toString());
           },
           addToArray(item) {
