@@ -1,0 +1,794 @@
+<html lang="en" dir="ltr"><head>
+    <meta charset="utf-8">
+    <title>T-Wind - Admin &amp; Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Tailwind Multipurpose Admin &amp; Dashboard Template" name="description">
+    <meta content="" name="Mannatthemes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- App favicon -->
+    <!-- <link rel="stylesheet" href="assets/libs/vanillajs-datepicker/css/datepicker.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/js-datepicker@5.18.2/dist/datepicker.min.css">
+    <link rel="canonical" href="https://flowbite.com/docs/plugins/datepicker/">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body data-layout-mode="light" class="bg-gray-100 dark:bg-gray-900 bg-[url('../images/bg-body.png')] dark:bg-[url('../images/bg-body-2.png')]">
+    <div class="container  mx-auto px-2">        
+        <div class="flex flex-wrap">
+            <div class="flex items-center py-4 w-full">
+                <div class="w-full">                    
+                    <div class="">
+                        <div class="flex flex-wrap justify-between">
+                            <div class="items-center ">
+                                <h1 class="font-semibold text-xl mb-1 block dark:text-slate-100">閭天佛道院 紫微斗數推算程式</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--end container-->
+
+    <div id="app" class="container mx-auto px-2 min-h-[calc(100vh-138px)] relative pb-14 ">         
+        <div class="flex flex-wrap">
+            <div class="w-full">
+                <div class="card mb-2 z-10">
+                    <div class="card-body">
+                        <form>
+                          <div class="grid xl:grid-cols-3 xl:gap-4">
+                            <div class="relative z-0 mb-3 w-full group">
+                              <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="">
+                              <label for="floating_first_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">姓名</label>
+                            </div>
+                            <div class="relative z-0 mb-3 w-full group flex items-center">性別：
+                              <input v-model="sex" id="male" class="peer/draft mr-1" type="radio" name="sex" checked />
+                              <label for="male" class="peer-checked/draft:text-sky-500 mr-8">男</label>
+                            
+                              <input v-model="sex" id="female" class="peer/published mr-1" type="radio" name="sex" />
+                              <label for="female" class="peer-checked/published:text-sky-500">女</label>
+                            </div>
+                          </div>
+                          <div class="grid xl:grid-cols-3 xl:gap-4 my-3">
+                            <div class="relative z-0 w-full group flex items-center">
+                              <input v-model="calendar" id="solar" class="peer/draft mr-1" type="radio" name="calendar" value="solar" />
+                              <label for="solar" class="peer-checked/draft:text-sky-500 mr-8">陽曆</label>
+                            
+                              <input v-model="calendar" id="moon" class="peer/published mr-1" type="radio" name="calendar" value="moon" checked />
+                              <label for="moon" class="peer-checked/published:text-sky-500 mr-8">陰曆</label>
+                              <label class="flex items-center">
+                                <input v-model="leap" type="checkbox" class="rounded-sm mr-1"> 閏
+                              </label>
+                            </div>
+                          </div>
+                        </form>
+
+                        <form>
+                          <div class="grid xl:grid-cols-3 xl:gap-4 my-3">
+                            <div class="relative z-0 w-full group flex items-center">
+                              <label class="inline-flex items-center mr-4">
+                                <input v-model="birthYear" type="text" class="w-12 mr-2 px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"/>
+                                <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
+                                  年
+                                </span>
+                              </label>
+                              <label class="inline-flex items-center mr-4">
+                                <input v-model="birthMonth" type="text" class="w-12 mr-2 px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"/>
+                                <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
+                                  月
+                                </span>
+                              </label>
+                              <label class="inline-flex items-center mr-4">
+                                <input v-model="birthDay" type="text" class="w-12 mr-2 px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"/>
+                                <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
+                                  日
+                                </span>
+                              </label>
+
+                              <form class="w-full p-20">
+                                <fieldset>
+                                  <div class="relative">
+                                    <label for="frm-whatever" class="sr-only">My field</label>
+                                    <select v-model="birthHour" class="border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 min-w-52 inline-flex justify-center rounded-md bg-white pr-5 py-2 text-sm focus:ring-1" name="whatever" id="frm-whatever">
+                                      <option value="0" selected>子時（23點 ~ 1點）</option>
+                                      <option value="2">丑時（1點 ~ 3點）</option>
+                                      <option value="4">寅時（3點 ~ 5點）</option>
+                                      <option value="6">卯時（5點 ~ 7點）</option>
+                                      <option value="8">辰時（7點 ~ 9點）</option>
+                                      <option value="10">巳時（9點 ~ 11點）</option>
+                                      <option value="12">午時（11點 ~ 13點）</option>
+                                      <option value="14">未時（13點 ~ 15點）</option>
+                                      <option value="16">申時（15點 ~ 17點）</option>
+                                      <option value="18">酉時（17點 ~ 19點）</option>
+                                      <option value="20">戍時（19點 ~ 21點）</option>
+                                      <option value="22">亥時（21點 ~ 23點）</option>
+                                    </select>
+                                  </div>
+                                </fieldset>
+                              </form>
+                            </div>
+                          </div>
+                        </form>
+                        <div class="flex items-center w-full justify-between">
+                          <div class="flex">
+                            <button class="mx-1 px-3 py-2 lg:px-4 bg-gray-400 my-4 text-white text-sm font-semibold rounded hover:bg-gray-500">清除</button>
+                            <button @click="calculate" class="mx-1 px-3 py-2 lg:px-4 bg-blue-500 my-4 text-white text-sm font-semibold rounded hover:bg-blue-600">開始推算</button>
+                          </div>
+
+                          <button class="mx-1 px-3 py-2 lg:px-4 bg-teal-600 my-4 text-white text-sm font-semibold rounded hover:bg-teal-700">維護</button>
+                        </div>
+                    </div><!--end card-body-->
+                </div>
+
+                <div class="card mb-2 z-0">
+                    <div class="card-header">
+                      <div class="flex items-center justify-between">
+                          <div class="items-center ">
+                            <h4 class="card-title">推算結果</h4>
+                          </div>
+                          <div class="flex items-center">
+                            <button class="px-3 py-2 lg:px-4 bg-Red-400 mb-2 text-white text-sm font-semibold rounded hover:bg-Red-600">列印</button>
+                          </div>
+                      </div>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="min-w-full">
+                        <div class="w-full grid grid-cols-4">
+                          <div class="border p-2">
+                            <div>巨</div>
+                            <div>門</div>
+                            <div>
+                              <span class="text-green-600">
+                                制
+                              </span>
+                            </div>
+                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-blue-600">【兄弟宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  112-121
+                                </span>
+                              </div>
+
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[3] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  巳
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="border p-2 border-l-0">
+                            <div>廉天文</div>
+                            <div>貞相昌</div>
+                            <div>
+                              <span class="text-blue-300">
+                                洩
+                              </span>
+                              <span class="text-red-600">
+                                旺
+                              </span>
+                            </div>
+                            <div>
+                              <span class="text-red-600">
+                                忌<span class="ml-4">科</span>
+                              </span>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-red-600">【命宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  2-11
+                                </span>
+                              </div>
+                            </div>
+
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[4] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  午
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="border p-2 border-l-0">
+                            <div>天</div>
+                            <div>梁</div>
+                            <div>
+                              <span class="text-green-600">
+                                損
+                              </span>
+                            </div>
+                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-blue-600">【父母宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  12-21
+                                </span>
+                              </div>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[4] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  未
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="border p-2 border-l-0">
+                            <div>七文</div>
+                            <div>殺曲</div>
+                            <div>
+                              <span class="text-red-600">
+                                旺
+                              </span>
+                            </div>
+                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-blue-600">【福德宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  21-31
+                                </span>
+                              </div>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[5] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  申
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="w-full grid grid-cols-4">
+                          <div class="grid grid-cols-1">
+                            <div class="border p-2 border-l-0 border-t-0">
+                              <div>貪</div>
+                              <div>狼</div>
+                              <div>
+                                <span class="text-red-600">
+                                  旺
+                                </span>
+                              </div>
+                              <div>&nbsp;</div>
+                              <div class="grid grid-cols-3">
+                                
+                                <div class="flex justify-center col-span-2">
+                                  <span class="text-blue-600">【夫妻宮】</span>
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-yellow-600">
+                                    102-111
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-blue-900">
+                                    {{ tgArray[2] }}
+                                  </span>
+                                  <span class="text-blue-900">
+                                    辰
+                                  </span>
+                                </div>
+  
+                              </div>
+                            </div>
+                            <div class="border p-2 border-l-0 border-t-0">
+                              <div>太</div>
+                              <div>陰</div>
+                              <div>
+                                <span class="text-green-600">
+                                  制
+                                </span>
+                              </div>
+                              <div>
+                                <span class="text-red-600">
+                                  科
+                                </span>
+                              </div>
+                              <div class="grid grid-cols-3">
+                                
+                                <div class="flex justify-center col-span-2">
+                                  <span class="text-blue-600">【子女宮】</span>
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-yellow-600">
+                                    92-101
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-blue-900">
+                                    {{ tgArray[2] }}
+                                  </span>
+                                  <span class="text-blue-900">
+                                    卯
+                                  </span>
+                                </div>
+  
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="grid col-span-2 border p-2 border-l-0 border-t-0">
+                            <div class="grid grid-cols-4 text-red-600">
+                              <!-- justify-end為置右，移除則為置左 -->
+                              <p class="inline-flex items-center"></p>
+                              <p class="inline-flex items-center"></p>
+                              <p class="inline-flex items-center justify-end">科 /</p>
+                              <p class="inline-flex items-center justify-end">祿
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                  <g clip-path="url(#clip0_1591_9734)">
+                                    <path class="fill-red-600" d="M5.63687e-07 9.66374L7.26876e-07 13.3971C7.32286e-07 13.5208 0.0491673 13.6395 0.136684 13.7271C0.224201 13.8146 0.3429 13.8637 0.466667 13.8637L4.2 13.8637C4.29242 13.8639 4.38281 13.8366 4.4597 13.7854C4.5366 13.7341 4.59654 13.6611 4.63193 13.5758C4.66732 13.4904 4.67657 13.3964 4.65849 13.3058C4.64041 13.2152 4.59583 13.1319 4.5304 13.0667L2.9932 11.5304L13.8637 0.660804L13.2029 4.06865e-06L2.33333 10.8705L0.797067 9.33334C0.7318 9.2679 0.648573 9.22332 0.557939 9.20525C0.467304 9.18717 0.373343 9.19642 0.287968 9.23181C0.202593 9.2672 0.129648 9.32714 0.0783817 9.40404C0.027115 9.48093 -0.000164795 9.57132 5.63687e-07 9.66374Z" fill="black"/>
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1591_9734">
+                                      <rect width="14" height="14" fill="white"/>
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </p>
+                            </div>
+
+                            <div class="grid grid-cols-12">
+                              <div class="row-span-1 grid grid-rows-4 text-red-600">
+                                <p></p>
+                                <p>科<br>/</p>
+                                <p></p>
+                                <p></p>
+                              </div>
+
+                              <div class="col-span-10 w-full h-full flex flex-col justify-center items-center">
+                                <div>
+                                  陽男：<span>男名</span><br>
+                                  農曆：<span>91年9月2日辰時</span><br>
+                                  公曆：<span>2002年10月7日辰時</span><br>
+                                  <p class="grid grid-cols-2">
+                                    <span>命宮：午</span>
+                                    <span>身宮：寅</span>
+                                  </p>
+                                  <p class="grid grid-cols-2">
+                                    <span>命主：破軍</span>
+                                    <span>身主：火星</span>
+                                  </p>
+                                  <p class="grid grid-cols-2">
+                                    <span>水二局（天河水）</span>
+                                    <span>生肖：馬</span>
+                                  </p>
+                                  <div class="text-red-600 mb-4">
+                                    <p>四柱八字：
+                                      <span>壬午（年） 己酉（月）</span>
+                                    </p>
+                                    <p class="ml-20 pl-1">戊申（日） 丙辰（時）</p>
+                                  </div>
+                                  <div class="text-blue-600">
+                                    <p>生年四化：
+                                      <span>天梁（祿） 紫微（權）</span>
+                                    </p>
+                                    <p class="ml-20 pl-1">左輔（科） 武曲（忌）</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row-span-1 grid grid-rows-4 text-red-600 text-right">
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                              </div>
+                            </div>
+
+                            <div class="grid grid-cols-4 text-red-600">
+                              <p></p>
+                              <p></p>
+                              <p></p>
+                              <p class="inline-flex items-center justify-end">祿
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 28 28" fill="none">
+                                  <g clip-path="url(#clip0_1590_9732)">
+                                    <path class="fill-red-600" d="M8.4 1.49455e-06H0.933335C0.685799 1.49455e-06 0.448402 0.0983346 0.273369 0.273369C0.0983346 0.448402 1.49455e-06 0.685799 1.49455e-06 0.933335V8.4C-0.000329214 8.58484 0.0542305 8.76561 0.156764 8.91941C0.259297 9.0732 0.405186 9.19309 0.575937 9.26387C0.746687 9.33465 0.934608 9.35313 1.11588 9.31698C1.29715 9.28083 1.4636 9.19167 1.59413 9.0608L4.66667 5.9864L26.4059 27.7275L27.7275 26.4059L5.9864 4.66667L9.0608 1.59413C9.19167 1.4636 9.28083 1.29715 9.31698 1.11588C9.35313 0.934608 9.33465 0.746687 9.26387 0.575937C9.19309 0.405186 9.0732 0.259297 8.91941 0.156764C8.76561 0.0542305 8.58484 -0.000329214 8.4 1.49455e-06Z" fill="black"/>
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1590_9732">
+                                      <rect width="28" height="28" fill="white"/>
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+                              </p>
+                            </div>
+                            
+                          </div>
+
+                          <div class="grid grid-cols-1">
+                            <div class="border p-2 border-l-0 border-t-0">
+                              <div>天</div>
+                              <div>同</div>
+                              <div>
+                                <span class="text-green-600">
+                                  制
+                                </span>
+                              </div>
+                              <div>&nbsp;</div>
+                              <div class="grid grid-cols-3">
+                                
+                                <div class="flex justify-center col-span-2">
+                                  <span class="text-blue-600">【田宅宮】</span>
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-yellow-600">
+                                    32-41
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-blue-900">
+                                    {{ tgArray[8] }}
+                                  </span>
+                                  <span class="text-blue-900">
+                                    酉
+                                  </span>
+                                </div>
+  
+                              </div>
+                            </div>
+                            <div class="border p-2 border-l-0 border-t-0">
+                              <div>武</div>
+                              <div>曲</div>
+                              <div>
+                                <span class="text-blue-300">
+                                  洩
+                                </span>
+                              </div>
+                              <div>
+                                <span class="text-red-600">
+                                  權
+                                </span>
+                              </div>
+                              <div class="grid grid-cols-3">
+                                
+                                <div class="flex justify-center col-span-2">
+                                  <span class="text-blue-600">【官祿宮】</span>
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-yellow-600">
+                                    42-51
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-blue-900">
+                                    {{ tgArray[9] }}
+                                  </span>
+                                  <span class="text-blue-900">
+                                    戌
+                                  </span>
+                                </div>
+  
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="w-full grid grid-cols-4">
+                          <div class="border p-2 border-t-0">
+                            <div>紫天右</div>
+                            <div>微府弼</div>
+                            <div>
+                              <span class="text-green-600">
+                                制制
+                              </span>
+                            </div>
+                            <div>
+                              <span class="text-red-600">
+                                權
+                              </span>
+                            </div>
+                            <div class="grid grid-cols-3">
+
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-blue-600">【財帛宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  82-91
+                                </span>
+                              </div>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[1] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  寅
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="border p-2 border-l-0 border-t-0">
+                            <div>天</div>
+                            <div>機</div>
+                            <div>
+                              <span class="text-green-600">
+                                制
+                              </span>
+                            </div>
+                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-blue-600">【疾厄宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  72-81
+                                </span>
+                              </div>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[12] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  丑
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="border p-2 border-l-0 border-t-0">
+                            <div>破左</div>
+                            <div>軍輔</div>
+                            <div>
+                              <span class="text-green-600">
+                                制
+                              </span>
+                            </div>
+                            <div>
+                              <span class="text-red-600">
+                                <span class="pl-4">科</span>
+                              </span>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-blue-600">【遷移宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  62-71
+                                </span>
+                              </div>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[11] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  子
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="border p-2 border-l-0 border-t-0">
+                            <div>太</div>
+                            <div>陽</div>
+                            <div>
+                              <span class="text-red-600">
+                                生
+                              </span>
+                            </div>
+                            <div>
+                              <span class="text-red-600">
+                                權
+                              </span>
+                            </div>
+                            <div class="grid grid-cols-3">
+
+                              <div class="flex justify-center col-span-2">
+                                <span class="text-blue-600">【奴僕宮】</span>
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-yellow-600">
+                                  52-61
+                                </span>
+                              </div>
+                            </div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-blue-900">
+                                  {{ tgArray[10] }}
+                                </span>
+                                <span class="text-blue-900">
+                                  亥
+                                </span>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                    </div><!--end card-body-->
+                </div>
+            </div>   
+        </div>
+
+    
+    </div><!--end container-->
+
+    <div id="app">
+      <p>農曆日期: {{ lunarDate }}</p>
+    </div>
+    
+    <!-- <script src="assets/libs/vanillajs-datepicker/js/datepicker-full.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="./js/lunar.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script>
+        document.write(new Date().getFullYear());
+      </script> -->
+    <script>
+      const { createApp } = Vue;
+
+      function getTG(index) {
+        const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+        return tianGan[index - 1];
+      }
+
+      function getDZ(index) {
+        const diZhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+        return diZhi[index - 1];
+      }
+
+      // 五虎遁，得正月天干
+      function getFirstMonthTG(index) {
+        if (index === 1 || index === 6) return 3;
+        if (index === 2 || index === 7) return 5;
+        if (index === 3 || index === 8) return 7;
+        if (index === 4 || index === 9) return 9;
+        if (index === 5 || index === 10) return 1;
+        return null; // default case if index is out of range
+      }
+
+      createApp({
+        data() {
+          return {
+            lunarDate: '',
+            tgArray: [], // 天干陣列
+            birthTG: 0, // 生辰天干
+            birthDZ: 0, // 生辰地支
+            sex: 0, // 性別
+            leap: false, // 閏月
+            calendar: 'lunar', // 陽曆/陰曆
+            birthYear: 70,
+            birthMonth: 10,
+            birthDay: 4,
+            birthHour: 0
+          };
+        },
+        methods: {
+          calculate() {
+            console.log(this.birthYear);
+            console.log(this.birthMonth);
+            console.log(this.birthDay);
+            console.log(this.sex);
+            console.log(this.calendar);
+            console.log(this.leap);
+            let solar, theLunar;
+            // 國曆農曆轉換
+            if (this.calendar === 'solar') {
+              console.log((Number(this.birthYear) + 1911).toString());
+              a = LunarYear.fromYear(Number(this.birthYear) + 1911);
+              console.log(a.getLeapMonth());
+              //console.log(solar.getMonth());              
+              theSolar = Solar.fromYmdHms(this.birthYear + 1911 , this.birthMonth, this.birthDay, this.birthHour, 0, 0);
+              theLunar = theSolar.getLunar();
+
+            } else {
+                if (this.leap) {
+                console.log(this.birthYear + 1911);
+                theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth) * -1, Number(this.birthDay), Number(this.birthHour), 0, 0);
+              } else {
+                console.log(222);
+                theLunar = Lunar.fromYmdHms(Number(this.birthYear) + 1911, Number(this.birthMonth), Number(this.birthDay), Number(this.birthHour), 0, 0);
+              }
+            }
+            //const solar = Solar.fromDate(new Date(this.birthYear + 1911 + '-' + this.birthMonth + '-' + this.birthDay));
+            //const lunar = solar.getLunar();
+            console.log(theLunar.toFullString());
+          },
+          addToArray(item) {
+            this.tgArray.push(item);
+          },
+          clearArray() {
+            this.tgArray = [];
+          }
+        },
+        mounted() {
+          const lunar = Lunar.fromDate(new Date());
+          this.lunarDate = lunar.toFullString();
+        }
+      }).mount('#app');
+    </script>
+</body>
+</html>
