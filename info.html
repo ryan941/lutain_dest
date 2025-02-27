@@ -725,11 +725,11 @@
 
       // 五虎遁，得正月天干
       function getFirstMonthTG(index) {
-        if (index === 1 || index === 6) return 2;
+        if (index === 0 || index === 5) return 2;
+        if (index === 1 || index === 6) return 4;
         if (index === 2 || index === 7) return 6;
-        if (index === 3 || index === 8) return 4;
-        if (index === 4 || index === 9) return 8;
-        if (index === 5 || index === 10) return 0;
+        if (index === 3 || index === 8) return 8;
+        if (index === 4 || index === 9) return 0;
         return null; // default case if index is out of range
       }
 
@@ -763,7 +763,9 @@
           fillTG(firstTG) {
             this.clearArray();
             let firstIndex = tianGan.indexOf(firstTG);
+            console.log('firstTG is ' + firstIndex);
             let index = getFirstMonthTG(firstIndex);
+            console.log('FirstMonthTG is ' + index);
             for (let i = 0; i < 12; i++) {
               this.tgArray.push(tianGan[index]);
               index = (index + 1) % tianGan.length;
@@ -807,6 +809,7 @@
             // 生年干支
             yearGan = theLunar.getYearGan();
             yearZhi = theLunar.getYearZhi();
+            console.log(yearGan);
             this.fillTG(yearGan);
             console.log(this.tgArray);
 
@@ -867,13 +870,8 @@
 
             //順算身宮
             if (theBirthHourIndex != 0) {
-              if (theLunarMonth >= (theBirthHourIndex + 1)) {
-                console.log(888);
-                ShengGongIndex = theBirthHourIndex-(12-theLunarMonth)-1;                       
-              } else {
-                console.log(999);
-                ShengGongIndex = theBirthHourIndex-(12-theLunarMonth)-1;                                                    
-              }
+              console.log(888);
+              ShengGongIndex = theBirthHourIndex-(12-theLunarMonth)-1;                                     
             } 
             console.log('身宮：');
             console.log(this.tgArray[ShengGongIndex]);
