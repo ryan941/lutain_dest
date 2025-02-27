@@ -725,11 +725,11 @@
 
       // 五虎遁，得正月天干
       function getFirstMonthTG(index) {
-        if (index === 1 || index === 6) return 3;
-        if (index === 2 || index === 7) return 5;
-        if (index === 3 || index === 8) return 7;
-        if (index === 4 || index === 9) return 9;
-        if (index === 5 || index === 10) return 1;
+        if (index === 1 || index === 6) return 2;
+        if (index === 2 || index === 7) return 6;
+        if (index === 3 || index === 8) return 4;
+        if (index === 4 || index === 9) return 8;
+        if (index === 5 || index === 10) return 0;
         return null; // default case if index is out of range
       }
 
@@ -758,6 +758,16 @@
           },
           lunarClick() {
             this.leapDisable = false;
+          },
+          // 計算命盤天干
+          fillTG(firstTG) {
+            this.clearArray();
+            let firstIndex = tianGan.indexOf(firstTG);
+            let index = getFirstMonthTG(firstIndex);
+            for (let i = 0; i < 12; i++) {
+              this.tgArray.push(tianGan[index]);
+              index = (index + 1) % tianGan.length;
+            }
           },
           calculate() {
             console.log(this.birthYear);
@@ -794,15 +804,18 @@
             }
             //const solar = Solar.fromDate(new Date(this.birthYear + 1911 + '-' + this.birthMonth + '-' + this.birthDay));
             //const lunar = solar.getLunar();
+            // 生年干支
             yearGan = theLunar.getYearGan();
-            yearZhi = theLunar.getYearZhi();            
+            yearZhi = theLunar.getYearZhi();
+            this.fillTG(yearGan);
+            console.log(this.tgArray);
 
             tianGan.forEach(function(value, index, array) {              
               if (value == yearGan) {                   
-                YGanIndex = getFirstMonthTG(index + 1);                
+                YGanIndex = getFirstMonthTG(index + 1);
               }
             });
-
+            /*
             tgArray = [];
             aryCounter = [1,2,3,4,5,6,7,8,9,10];
             ganCounter = 0;
@@ -818,7 +831,8 @@
               this.addToArray(getTG(oriIndex));
               ganCounter++; 
               oriIndex++;                 
-            }          
+            }
+              */
             
             console.log(this.tgArray);
             console.log(theLunar.toString());
