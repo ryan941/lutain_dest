@@ -749,6 +749,16 @@
         return null; // default case if index is out of range
       }
 
+      // 五鼠遁, 得子時天干
+      function getFirstHourTG(index) {
+        if (index === 0 || index === 5) return 0;
+        if (index === 1 || index === 6) return 2;
+        if (index === 2 || index === 7) return 4;
+        if (index === 3 || index === 8) return 6;
+        if (index === 4 || index === 9) return 8;
+        return null; // default case if index is out of range
+      }
+
       createApp({
         data() {
           return {
@@ -789,12 +799,18 @@
             }
           },
           // 安十二宮位
-          fillTH(firstMonthHouseIndex){
+          fillTH(firstMonthHouseIndex, setShengGongIndex){
             this.clearTHArray();
             let index = firstMonthHouseIndex;  
             let reIndex = 0;          
+            let strSheng = '(身)';
+            console.log('命/身：' + firstMonthHouseIndex + ',' + setShengGongIndex)
             for (let i = 0; i < 12; i++) {
-              this.thArray.push(twelveHouse[index]);
+              if (i == setShengGongIndex) 
+                this.thArray.push(strSheng.concat(twelveHouse[index]));
+              else                
+                this.thArray.push(twelveHouse[index]);
+              
               if (index > 0) {
                 index = (index - 1) % twelveHouse.length;                
               } else {                
@@ -844,6 +860,45 @@
             console.log(yearGan);
             this.fillTG(yearGan);
             console.log(this.tgArray);
+
+            // 生月干支        
+            monthGan = this.tgArray[theLunarMonth-1];     
+            monthZhi = twelveTGHouse[theLunarMonth-1];
+            
+            // 生日干支
+            theLunarYear = theLunar.getYear();
+            theLunarDay = theLunar.getDay();
+            console.log('出生月份（農）：' + theLunarMonth);
+            let countBirthDay = theLunarDay;
+            if (isLeap) {                     
+              theLunarLastMonth = theLunarMonth;
+              d = LunarMonth.fromYm(theLunarYear, theLunarLastMonth);
+              theLastMonthDay = d.getDayCount();
+              countBirthDay += theLastMonthDay
+              //console.log('dayCount:' + theLastMonthDay);             
+            }
+
+            // 初一天干地支
+            firstGanDayindex = tianGan.indexOf(monthGan);
+            firstZhiDayindex = twelveTGHouse.indexOf(monthZhi);
+            for (let i = 0; i < countBirthDay-1; i++) {
+              //this.tgArray.push(tianGan[index]);
+              firstGanDayindex = (firstGanDayindex + 1) % tianGan.length;
+              firstZhiDayindex = (firstZhiDayindex + 1) % twelveTGHouse.length;
+            }
+            console.log('生日干支：' + tianGan[firstGanDayindex] + ',' + twelveTGHouse[firstZhiDayindex]);
+
+            // 生時干支
+            //timeGan = theLunar.getTimeGan();  // 不準
+            timeZhi = theLunar.getTimeZhi();
+            timeZhiIndex = diZhi.indexOf(timeZhi);            
+            ZiShiGanIndex = getFirstHourTG(firstGanDayindex);              
+            for (let i = 0; i < timeZhiIndex; i++) {              
+              ZiShiGanIndex = (ZiShiGanIndex + 1) % tianGan.length;
+            }
+            timeGan = tianGan[ZiShiGanIndex];
+            console.log('生時干支:' + timeGan + ',' + timeZhi);            
+           
 
             tianGan.forEach(function(value, index, array) {              
               if (value == yearGan) {                   
@@ -905,12 +960,14 @@
               console.log(888);
               ShengGongIndex = theBirthHourIndex-(12-theLunarMonth)-1;                                     
             } 
-            console.log('身宮：');
+            console.log('身宮Index：');
             console.log(this.tgArray[ShengGongIndex]);
             console.log(twelveTGHouse[ShengGongIndex]);
+            console.log(MingGongIndex + ',' + ShengGongIndex);
+            
             
             //安十二宮
-            this.fillTH(MingGongIndex);
+            this.fillTH(MingGongIndex, ShengGongIndex);
             console.log(this.thArray);
              
             
