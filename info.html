@@ -39,14 +39,14 @@
                         <form>
                           <div class="grid xl:grid-cols-3 xl:gap-4">
                             <div class="relative z-0 mb-3 w-full group">
-                              <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="">
+                              <input v-model="username" type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="">
                               <label for="floating_first_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">姓名</label>
                             </div>
                             <div class="relative z-0 mb-3 w-full group flex items-center">性別：
-                              <input v-model="sex" id="male" class="peer/draft mr-1" type="radio" name="sex" checked />
+                              <input v-model="gendertype" id="male" class="peer/draft mr-1" type="radio" name="gendertype" value="male" checked />
                               <label for="male" class="peer-checked/draft:text-sky-500 mr-8">男</label>
                             
-                              <input v-model="sex" id="female" class="peer/published mr-1" type="radio" name="sex" />
+                              <input v-model="gendertype" id="female" class="peer/published mr-1" type="radio" name="gendertype" value="female" />
                               <label for="female" class="peer-checked/published:text-sky-500">女</label>
                             </div>
                           </div>
@@ -139,25 +139,44 @@
                           <div class="border p-2">
                             <div>巨</div>
                             <div>門</div>
-                            <div>
-                              <span class="text-green-600">
-                                制
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[3] }}
+                                </span>
+                              </div>
                             </div>
-                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[3] }}
+                                </span>
+                              </div>
+                            </div>
                             <div class="grid grid-cols-3">
                               <div class="flex justify-center col-span-2">
                                 &nbsp;
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  112-121
+                                  {{ dxArray[3] }}
                                 </span>
                               </div>
 
                             </div>
                             <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">                                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[3] }}
+                                </span>
+                              </div>    
+                              <div class="flex justify-center">                                
                                 <span class="text-blue-600">
                                   【{{ thArray[3] }}】
                                 </span>
@@ -176,18 +195,25 @@
                           <div class="border p-2 border-l-0">
                             <div>廉天文</div>
                             <div>貞相昌</div>
-                            <div>
-                              <span class="text-blue-300">
-                                洩
-                              </span>
-                              <span class="text-red-600">
-                                旺
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[4] }}
+                                </span>
+                              </div>
                             </div>
-                            <div>
-                              <span class="text-red-600">
-                                忌<span class="ml-4">科</span>
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[4] }}
+                                </span>
+                              </div>
                             </div>
                             <div class="grid grid-cols-3">                              
                               <div class="flex justify-center col-span-2">
@@ -195,13 +221,18 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  2-11
+                                  {{ dxArray[4] }}
                                 </span>
                               </div>
                             </div>
 
                             <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">                                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[4] }}
+                                </span>
+                              </div>    
+                              <div class="flex justify-center">                                
                                 <span class="text-red-600">
                                   【{{ thArray[4] }}】
                                 </span>
@@ -220,24 +251,43 @@
                           <div class="border p-2 border-l-0">
                             <div>天</div>
                             <div>梁</div>
-                            <div>
-                              <span class="text-green-600">
-                                損
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[5] }}
+                                </span>
+                              </div>
                             </div>
-                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[5] }}
+                                </span>
+                              </div>
+                            </div>
                             <div class="grid grid-cols-3">                              
                               <div class="flex justify-center col-span-2">
                                 &nbsp;
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  12-21
+                                  {{ dxArray[5] }}
                                 </span>
                               </div>
                             </div>
                             <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">                                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[5] }}
+                                </span>
+                              </div>    
+                              <div class="flex justify-center">                                
                                 <span class="text-blue-600">
                                   【{{ thArray[5] }}】
                                 </span>
@@ -256,24 +306,43 @@
                           <div class="border p-2 border-l-0">
                             <div>七文</div>
                             <div>殺曲</div>
-                            <div>
-                              <span class="text-red-600">
-                                旺
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[6] }}
+                                </span>
+                              </div>
                             </div>
-                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[6] }}
+                                </span>
+                              </div>
+                            </div>
                             <div class="grid grid-cols-3">                              
                               <div class="flex justify-center col-span-2">
                                 &nbsp;
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  21-31
+                                  {{ dxArray[6] }}
                                 </span>
                               </div>
                             </div>
                             <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">                                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[6] }}
+                                </span>
+                              </div>    
+                              <div class="flex justify-center">                                
                                 <span class="text-blue-600">
                                   【{{ thArray[6] }}】
                                 </span>
@@ -296,24 +365,43 @@
                             <div class="border p-2 border-l-0 border-t-0">
                               <div>貪</div>
                               <div>狼</div>
-                              <div>
-                                <span class="text-red-600">
-                                  旺
-                                </span>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ jqArray[2] }}
+                                  </span>
+                                </div>
                               </div>
-                              <div>&nbsp;</div>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ sqArray[2] }}
+                                  </span>
+                                </div>
+                              </div>
                               <div class="grid grid-cols-3">                                
                                 <div class="flex justify-center col-span-2">
                                   &nbsp;
                                 </div>
                                 <div class="flex justify-center">
                                   <span class="text-yellow-600">
-                                    102-111
+                                    {{ dxArray[2] }}
                                   </span>
                                 </div>
                               </div>
                               <div class="grid grid-cols-3">
-                                <div class="flex justify-center col-span-2">                                  
+                                <div>                                
+                                  <span class="text-pink-600">
+                                    {{ tcsArray[2] }}
+                                  </span>
+                                </div>    
+                                <div class="flex justify-center">                                  
                                   <span class="text-blue-600">
                                     【{{ thArray[2] }}】
                                   </span>
@@ -332,15 +420,25 @@
                             <div class="border p-2 border-l-0 border-t-0">
                               <div>太</div>
                               <div>陰</div>
-                              <div>
-                                <span class="text-green-600">
-                                  制
-                                </span>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ jqArray[1] }}
+                                  </span>
+                                </div>
                               </div>
-                              <div>
-                                <span class="text-red-600">
-                                  科
-                                </span>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ sqArray[1] }}
+                                  </span>
+                                </div>
                               </div>
                               <div class="grid grid-cols-3">                                
                                 <div class="flex justify-center col-span-2">
@@ -348,12 +446,17 @@
                                 </div>
                                 <div class="flex justify-center">
                                   <span class="text-yellow-600">
-                                    92-101
+                                    {{ dxArray[1] }}
                                   </span>
                                 </div>
                               </div>
                               <div class="grid grid-cols-3">
-                                <div class="flex justify-center col-span-2">                                  
+                                <div>                                
+                                  <span class="text-pink-600">
+                                    {{ tcsArray[1] }}
+                                  </span>
+                                </div>    
+                                <div class="flex justify-center">                                  
                                   <span class="text-blue-600">
                                     【{{ thArray[1] }}】
                                   </span>
@@ -401,32 +504,53 @@
 
                               <div class="col-span-10 w-full h-full flex flex-col justify-center items-center">
                                 <div>
-                                  陽男：<span>男名</span><br>
-                                  農曆：<span>91年9月2日辰時</span><br>
-                                  公曆：<span>2002年10月7日辰時</span><br>
-                                  <p class="grid grid-cols-2">
-                                    <span>命宮：午</span>
-                                    <span>身宮：寅</span>
+                                  <span>姓名： {{ username }}</span><br>
+                                  農曆：<span>{{ lunarBirth }}</span><br>                                 
+                                  <p class="grid grid-cols-3">
+                                    <span>命主：{{ MingZhu }}</span>
+                                    <span>&nbsp;</span>                                    
+                                    <span>{{ yinyangGender }}</span>
                                   </p>
-                                  <p class="grid grid-cols-2">
-                                    <span>命主：破軍</span>
-                                    <span>身主：火星</span>
-                                  </p>
-                                  <p class="grid grid-cols-2">
-                                    <span>水二局（天河水）</span>
-                                    <span>生肖：馬</span>
+                                  <p class="grid grid-cols-3">                                
+                                    <span>身主：{{ ShengZhu }}</span>
+                                    <span>&nbsp;</span>                                    
+                                    <span>{{ MGWXGu }}（{{ MGNaYin }}）</span>
                                   </p>
                                   <div class="text-red-600 mb-4">
-                                    <p>四柱八字：
-                                      <span>壬午（年） 己酉（月）</span>
-                                    </p>
-                                    <p class="ml-20 pl-1">戊申（日） 丙辰（時）</p>
+                                    <p>【 喜忌用神 】<br>
+                                      <p class="ml-3 pl-1 grid grid-cols-3">
+                                        <span>年：{{ ShengNianTG }}</span>
+                                        <span>&nbsp;</span>
+                                        <span>金：{{ WuXingCountArray[0] }}</span>
+                                      </p>
+                                      <p class="ml-3 pl-1 grid grid-cols-3">
+                                        <span>月：{{ ShengYueTG }}</span>
+                                        <span>&nbsp;</span>
+                                        <span>水：{{ WuXingCountArray[1] }}</span>
+                                      </p>
+                                      <p class="ml-3 pl-1 grid grid-cols-3">
+                                        <span>日：{{ ShengRiTG }}</span>
+                                        <span>&nbsp;</span>
+                                        <span>木：{{ WuXingCountArray[2] }}</span>
+                                      </p>
+                                      </p>
+                                      <p class="ml-3 pl-1 grid grid-cols-3">
+                                        <span>時：{{ ShengShiTG }}</span>
+                                        <span>&nbsp;</span>
+                                        <span>火：{{ WuXingCountArray[3] }}</span>
+                                      </p>
+                                      <p class="ml-3 pl-1 grid grid-cols-3">
+                                        <span>命：{{ MingGong }}</span>
+                                        <span>&nbsp;</span>
+                                        <span>土：{{ WuXingCountArray[4] }}</span>
+                                      </p>                                                                            
+                                    </p>                                    
                                   </div>
                                   <div class="text-blue-600">
                                     <p>生年四化：
-                                      <span>天梁（祿） 紫微（權）</span>
+                                      <span>{{ sihuaArray[0] }}（祿） {{ sihuaArray[1] }}（權）</span>
                                     </p>
-                                    <p class="ml-20 pl-1">左輔（科） 武曲（忌）</p>
+                                    <p class="ml-20 pl-1">{{ sihuaArray[2] }}（科） {{ sihuaArray[3] }}（忌）</p>
                                   </div>
                                 </div>
                               </div>
@@ -463,24 +587,44 @@
                             <div class="border p-2 border-l-0 border-t-0">
                               <div>天</div>
                               <div>同</div>
-                              <div>
-                                <span class="text-green-600">
-                                  制
-                                </span>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ jqArray[7] }}
+                                  </span>
+                                </div>
                               </div>
-                              <div>&nbsp;</div>
+                              <div>&nbsp;</div><div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ sqArray[7] }}
+                                  </span>
+                                </div>
+                              </div>
                               <div class="grid grid-cols-3">                                
                                 <div class="flex justify-center col-span-2">
                                   &nbsp;
                                 </div>
                                 <div class="flex justify-center">
                                   <span class="text-yellow-600">
-                                    32-41
+                                    {{ dxArray[7] }}
                                   </span>
                                 </div>
                               </div>
                               <div class="grid grid-cols-3">
-                                <div class="flex justify-center col-span-2">                                  
+                                <div>                                
+                                  <span class="text-pink-600">
+                                    {{ tcsArray[7] }}
+                                  </span>
+                                </div>    
+                                <div class="flex justify-center">                                  
                                   <span class="text-blue-600">
                                     【{{ thArray[7] }}】
                                   </span>
@@ -499,15 +643,25 @@
                             <div class="border p-2 border-l-0 border-t-0">
                               <div>武</div>
                               <div>曲</div>
-                              <div>
-                                <span class="text-blue-300">
-                                  洩
-                                </span>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ jqArray[8] }}
+                                  </span>
+                                </div>
                               </div>
-                              <div>
-                                <span class="text-red-600">
-                                  權
-                                </span>
+                              <div class="grid grid-cols-3">
+                                <div class="flex justify-center col-span-2">
+                                  &nbsp;
+                                </div>
+                                <div class="flex justify-center">
+                                  <span class="text-green-600">
+                                    {{ sqArray[8] }}
+                                  </span>
+                                </div>
                               </div>
                               <div class="grid grid-cols-3">                                
                                 <div class="flex justify-center col-span-2">
@@ -515,12 +669,17 @@
                                 </div>
                                 <div class="flex justify-center">
                                   <span class="text-yellow-600">
-                                    42-51
+                                    {{ dxArray[8] }}
                                   </span>
                                 </div>
                               </div>
                               <div class="grid grid-cols-3">
-                                <div class="flex justify-center col-span-2">                                  
+                                <div>                                
+                                  <span class="text-pink-600">
+                                    {{ tcsArray[8] }}
+                                  </span>
+                                </div>    
+                                <div class="flex justify-center">                                  
                                   <span class="text-blue-600">
                                     【{{ thArray[8] }}】
                                   </span>
@@ -543,15 +702,25 @@
                           <div class="border p-2 border-t-0">
                             <div>紫天右</div>
                             <div>微府弼</div>
-                            <div>
-                              <span class="text-green-600">
-                                制制
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[0] }}
+                                </span>
+                              </div>
                             </div>
-                            <div>
-                              <span class="text-red-600">
-                                權
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[0] }}
+                                </span>
+                              </div>
                             </div>
                             <div class="grid grid-cols-3">
                               <div class="flex justify-center col-span-2">
@@ -559,12 +728,17 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  82-91
+                                  {{ dxArray[0] }}
                                 </span>
                               </div>
                             </div>
                             <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">                                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[0] }}
+                                </span>
+                              </div>    
+                              <div class="flex justify-center">                                
                                 <span class="text-blue-600">
                                   【 {{thArray[0] }}】
                                 </span>
@@ -583,24 +757,43 @@
                           <div class="border p-2 border-l-0 border-t-0">
                             <div>天</div>
                             <div>機</div>
-                            <div>
-                              <span class="text-green-600">
-                                制
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[11] }}
+                                </span>
+                              </div>
                             </div>
-                            <div>&nbsp;</div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[11] }}
+                                </span>
+                              </div>
+                            </div>
                             <div class="grid grid-cols-3">                              
                               <div class="flex justify-center col-span-2">
                                 &nbsp;
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  72-81
+                                  {{ dxArray[11] }}
                                 </span>
                               </div>
                             </div>
                             <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">                                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[11] }}
+                                </span>
+                              </div>
+                              <div class="flex justify-center">                                
                                 <span class="text-blue-600">
                                   【{{ thArray[11] }}】
                                 </span>
@@ -618,30 +811,44 @@
                           </div>
                           <div class="border p-2 border-l-0 border-t-0">
                             <div>破左</div>
-                            <div>軍輔</div>
-                            <div>
-                              <span class="text-green-600">
-                                制
-                              </span>
-                            </div>
-                            <div>
-                              <span class="text-red-600">
-                                <span class="pl-4">科</span>
-                              </span>
+                            <div>軍輔</div>                            
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[10] }}
+                                </span>
+                              </div>
                             </div>
                             <div class="grid grid-cols-3">
                               <div class="flex justify-center col-span-2">
                                 &nbsp;
                               </div>
                               <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[10] }}
+                                </span>
+                              </div>
+                            </div>                            
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  62-71
+                                  {{ dxArray[10] }}
                                 </span>
                               </div>
                             </div>
-                            <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">
-                                
+                            <div class="grid grid-cols-3">                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[10] }}
+                                </span>
+                              </div>              
+                              <div>
                                 <span class="text-blue-600">
                                   【{{ thArray[10] }}】
                                 </span>
@@ -658,17 +865,27 @@
                             </div>
                           </div>
                           <div class="border p-2 border-l-0 border-t-0">
-                            <div>太</div>
-                            <div>陽</div>
-                            <div>
-                              <span class="text-red-600">
-                                生
-                              </span>
+                            <div>太陽<span class="text-red-600">(權)</span></div>
+                            <div>天同</div>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ jqArray[9] }}
+                                </span>
+                              </div>
                             </div>
-                            <div>
-                              <span class="text-red-600">
-                                權
-                              </span>
+                            <div class="grid grid-cols-3">
+                              <div class="flex justify-center col-span-2">
+                                &nbsp;
+                              </div>
+                              <div class="flex justify-center">
+                                <span class="text-green-600">
+                                  {{ sqArray[9] }}
+                                </span>
+                              </div>
                             </div>
                             <div class="grid grid-cols-3">
                               <div class="flex justify-center col-span-2">
@@ -676,12 +893,17 @@
                               </div>
                               <div class="flex justify-center">
                                 <span class="text-yellow-600">
-                                  52-61
+                                  {{ dxArray[9] }}
                                 </span>
                               </div>
                             </div>
                             <div class="grid grid-cols-3">
-                              <div class="flex justify-center col-span-2">                                
+                              <div>                                
+                                <span class="text-pink-600">
+                                  {{ tcsArray[9] }}
+                                </span>
+                              </div>    
+                              <div class="flex justify-center">                                
                                 <span class="text-blue-600">
                                   【{{ thArray[9] }}】
                                 </span>
@@ -722,12 +944,26 @@
     <!-- <script>
         document.write(new Date().getFullYear());
       </script> -->
-    <script>
+    <script>      
       const { createApp } = Vue;
       const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
       const diZhi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
       const twelveTGHouse = ['寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥', '子', '丑'];
       const twelveHouse = ['命宮', '兄弟宮', '夫妻宮', '子女宮', '財帛宮', '疾厄宮', '遷移宮', '朋友宮', '官祿宮', '田宅宮', '福德宮', '父母宮'];
+      const tianGanWuXing = ['木', '木', '火', '火', '土', '土', '金', '金', '水', '水'];
+      const diZhiWuXing = ['水', '土', '木', '木', '土', '火', '火', '土', '金', '金', '土', '水'];
+      const WuXingGu = ['水二局','木三局','金四局','土五局','火六局'];
+      const MingGongWuXing = [[2,0,4,3,1],[0,4,3,1,2],[4,3,1,2,0]];  // [子丑午未],[寅卯申酉],[辰巳戌亥]
+      const NaYin = [['海中金','澗下水','霹靂火','壁上土','桑拓木'],['大溪水','妒中火','城頭土','松柏木','金箔金'],['覆燈火','沙中土','大林木','白腊金','長流水'],['沙中金','天河水','天上火','路旁土','楊柳木'],['泉中水','山下火','大驛土','石榴木','劍鋒金'],['山頭火','屋上土','平地木','釵川金','大海水']]; //子丑,寅卯,辰巳,午未,申酉,戌亥
+      const BeidouGroup = ['紫微','天機','','太陽','武曲','天同','','','廉貞','','','']; // 北斗群星
+      const TianFu = [2,1,0,11,10,9,8,7,6,5,4,3];  // 對應twelveTGHouse index 
+      const NandouGroup = ['天府','太陰','貪狼','巨門','天相','天梁','七殺','','','','破軍'];  // 南斗群星
+      const LuCun = [0,1,3,4,3,4,6,7,9,10];  // 對應twelveTGHouse index 
+      const tweleveChangSheng = ['長生','沐浴','冠帶','臨官','帝旺','衰','病','死','墓','絕','胎','養'];  // 十二長生
+      const HuiLu = ['廉貞','天機','天同','太陰','貪狼','武曲','太陽','巨門','天梁','破軍']; // 化祿
+      const HuiQuan = ['破軍','天梁','天機','天同','太陰','貪狼','武曲','太陽','紫微','巨門']; // 化權
+      const HuiKe = ['武曲','紫微','文昌','天機','右弼','天梁','天府','文曲','左輔','太陰']; // 化科
+      const HuiJi = ['太陽','太陰','廉貞','巨門','天機','文曲','天同','文昌','武曲','貪狼']; // 化忌
 
       function getTG(index) {
         //const tianGan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
@@ -759,9 +995,166 @@
         return null; // default case if index is out of range
       }
 
+      function getMingGongZhiRowForWuXingGu(index) {
+        if (index === 0 || index === 1 || index === 6 || index === 7) return 0;
+        if (index === 2 || index === 3 || index === 8 || index === 9) return 1;
+        if (index === 4 || index === 5 || index === 10 || index === 11) return 2;
+        return null;
+      }
+
+      // 安紫微星時求地支起算點,回傳值對應twelveTGHouse
+      function ZhiStart(num) {
+        if (num === 1) return 0;
+        if (num === 2) return 11;
+        if (num === 3) return 2;
+        if (num === 4) return 9;
+        if (num === 5) return 4;
+        if (num === 6) return 7;
+        return null;
+      }
+
+      function getTianMaZhi(monthZhiIndex) {
+        if (monthZhiIndex === 1 || monthZhiIndex === 5 || monthZhiIndex === 9) return 8;
+        if (monthZhiIndex === 2 || monthZhiIndex === 6 || monthZhiIndex === 10) return 5;
+        if (monthZhiIndex === 3 || monthZhiIndex === 7 || monthZhiIndex === 11) return 2;
+        if (monthZhiIndex === 4 || monthZhiIndex === 8 || monthZhiIndex === 12) return 11;
+        return null;               
+      }
+
+      // return mapping twelveTGHouse
+      function getTianKuiIndex(index) {
+        if (index === 0 || index === 4) return 11;
+        if (index === 1 || index === 5) return 10;
+        if (index === 2 || index === 3) return 9;
+        if (index === 6 || index === 7) return 0;
+        if (index === 8 || index === 9) return 1;
+        return null;
+      }
+
+      // return mapping twelveTGHouse
+      function getTianYueIndex(index) {
+        if (index === 0 || index === 4) return 5;
+        if (index === 1 || index === 5) return 6;
+        if (index === 2 || index === 3) return 7;
+        if (index === 6 || index === 7) return 4;
+        if (index === 8 || index === 9) return 3;
+        return null;
+      }
+
+      // 確認星耀是否為四化
+      function checkStarIsSiHua(xingyaoName, array) {      
+        if (array[0] === xingyaoName) return '(祿)';
+        if (array[1] === xingyaoName) return '(權)';
+        if (array[2] === xingyaoName) return '(科)';
+        if (array[3] === xingyaoName) return '(忌)';
+        return '';
+      }
+
+      // 取得火星起算生年地支宮位
+      function getHuoXingStartIndex(index) {
+        if (index === 2 || index === 6 || index === 10) return 1;
+        if (index === 8 || index === 0 || index === 4) return 2;
+        if (index === 11 || index === 3 || index === 7) return 9;
+        if (index === 5 || index === 9 || index === 1) return 3;        
+        return null;
+      }
+
+      // 取得鈴星起算生年地支宮位
+      function getReiSeiStartIndex(index) {
+        if (index === 2 || index === 6 || index === 10) return 3;
+        if (index === 8 || index === 0 || index === 4) return 10;
+        if (index === 11 || index === 3 || index === 7) return 10;
+        if (index === 5 || index === 9 || index === 1) return 10;        
+        return null;
+      }
+
+      // 取得破碎星生年地支宮位
+      function getPoSuiIndex(index) {
+        if (index === 0 || index === 3 || index === 6 || index === 9) return 5;
+        if (index === 2 || index === 5 || index === 8 || index === 11) return 9;
+        if (index === 1 || index === 4 || index === 7 || index === 10) return 1;                
+        return null;
+      }
+
+      // 取得孤辰生年地支宮位
+      function getGuChenIndex(index) {
+        if (index === 2 || index === 3 || index === 4) return 5;
+        if (index === 5 || index === 6 || index === 7) return 8;
+        if (index === 8 || index === 9 || index === 10) return 11;
+        if (index === 11 || index === 1 || index === 1) return 2;        
+        return null;
+      }
+
+      // 取得寡宿生年地支宮位
+      function getGuaSuIndex(index) {
+        if (index === 2 || index === 3 || index === 4) return 1;
+        if (index === 5 || index === 6 || index === 7) return 4;
+        if (index === 8 || index === 9 || index === 10) return 7;
+        if (index === 11 || index === 1 || index === 1) return 10;        
+        return null;
+      }
+
+      // 安將前十二星由生年地支三合支 中間地支起將星 依序順行 回傳值對應twelveTGHouse
+      function getJiangXingIndex(index) {
+        if (index === 2 || index === 6 || index === 10) return 10;
+        if (index === 1 || index === 5 || index === 9) return 1;
+        if (index === 0 || index === 4 || index === 8) return 4;
+        if (index === 3 || index === 7 || index === 11) return 7;        
+        return null;
+      }
+
+      // 判斷陰陽男女(生年天干 0,2,4,6,8 為陽,反之為陰)
+      function CheckYinYangSex(index) {
+        return index%2
+      }
+
+      // 五行局推算長生 mapping twelveTGHouse
+      function getChangShengIndex(WuXingType) {
+        if (WuXingType === 0) return 6;
+        if (WuXingType === 1) return 9;
+        if (WuXingType === 2) return 3;
+        if (WuXingType === 3) return 6;
+        if (WuXingType === 4) return 0;
+        return null;
+      }
+
+      // 取得命主星
+      function getMingZhu(zhiIndex) {
+        if (zhiIndex === 10) return '貪狼';
+        if (zhiIndex === 4) return '破軍';
+        if (zhiIndex === 11 || zhiIndex === 9) return '巨門';
+        if (zhiIndex === 0 || zhiIndex === 8) return '祿存';
+        if (zhiIndex === 1 || zhiIndex === 7) return '文曲';
+        if (zhiIndex === 2 || zhiIndex === 6) return '廉貞';
+        if (zhiIndex === 3 || zhiIndex === 5) return '武曲';
+        return null;
+      }
+
+      // 取得身主星
+      function getShenZhu(zhiIndex) {
+        if (zhiIndex === 0) return '天府';
+        if (zhiIndex === 6) return '七殺';
+        if (zhiIndex === 1 || zhiIndex === 7) return '天相';
+        if (zhiIndex === 2 || zhiIndex === 8) return '天梁';
+        if (zhiIndex === 3 || zhiIndex === 9) return '天同';
+        if (zhiIndex === 4 || zhiIndex === 10) return '文昌';
+        if (zhiIndex === 5 || zhiIndex === 11) return '天機';
+        return null;
+      }
+
+      // 以五行局推算初限
+      function getDaXian(WuXingType) {
+        if (WuXingType === 0) return ['2~11歲','12~21歲','22~31歲','32~41歲','42~51歲','52~61歲','62~71歲','72~81歲','82~91歲','92~101歲','102~111歲','112~121歲'];
+        if (WuXingType === 1) return ['3~12歲','13~22歲','23~32歲','33~42歲','43~52歲','53~62歲','63~72歲','73~82歲','83~92歲','93~102歲','103~112歲','113~122歲'];
+        if (WuXingType === 2) return ['4~13歲','14~23歲','24~33歲','34~43歲','44~53歲','54~63歲','64~73歲','74~83歲','84~93歲','94~103歲','104~113歲','114~123歲'];
+        if (WuXingType === 3) return ['5~14歲','15~24歲','25~34歲','35~44歲','45~54歲','55~64歲','65~74歲','75~84歲','85~94歲','95~104歲','105~114歲','115~124歲'];
+        if (WuXingType === 4) return ['6~15歲','16~25歲','26~35歲','36~45歲','46~55歲','56~65歲','66~75歲','76~85歲','86~95歲','96~105歲','106~115歲','116~125歲'];
+      }      
+
       createApp({
         data() {
           return {
+            username: '',  // 姓名
             lunarDate: '',
             thArray: [], // 安十二宮陣列
             tgArray: [], // 天干陣列
@@ -770,11 +1163,48 @@
             sex: 0, // 性別
             leap: false, // 閏月
             leapDisable: false, // 閏月不可選
+            gendertype: 'male', // 男/女
+            yinyangGender: '',  //陽/陰,男/女
             calendar: 'lunar', // 陽曆/陰曆
+            //solarBirth: '',  // 陽曆
+            lunarBirth: '',  // 陰曆
+            MGWXGu: '',  // 命宮五行局
+            MGNaYin: '',  // 六十納音
+            MingZhu: '', // 命主星
+            ShengZhu: '', // 身主星
+            MingGong: '',  // 命宮
+            ShengGong: '',  // 身宮
+            ShengNianTG: '',  // 生年天干
+            ShengYueTG: '',  // 生月天干
+            ShengRiTG: '',  // 生日天干
+            ShengShiTG: '',  // 生時天干
+            WuXing_Jin: 0,
+            WuXing_Shui: 0,
+            WuXing_Mu: 0,
+            WuXing_Huo: 0,
+            WuXing_Tu: 0,
+            WuXingCountArray: [],  // 五行(金水木土火)
             birthYear: 70,
             birthMonth: 10,
             birthDay: 4,
-            birthHour: 0
+            birthHour: 0,   
+            jqArray: [], // 將前十二星
+            sqArray: [], // 歲前十二星         
+            tcsArray: [],   // 十二長生
+            dxArray:[],  // 大限
+            sihuaArray:[],  // 四化星耀
+            ziArray:[],
+            chouArray:[],
+            yinArray:[],
+            maoArray:[],
+            chenArray:[],
+            siArray:[],
+            wuArray:[],
+            weiArray:[],
+            shenArray:[],
+            youArray:[],
+            xuArray:[],
+            haiArray:[]
           };
         },
         methods: {
@@ -790,9 +1220,9 @@
           fillTG(firstTG) {
             this.clearArray();
             let firstIndex = tianGan.indexOf(firstTG);
-            console.log('firstTG is ' + firstIndex);
+            //console.log('firstTG is ' + firstIndex);
             let index = getFirstMonthTG(firstIndex);
-            console.log('FirstMonthTG is ' + index);
+            //console.log('FirstMonthTG is ' + index);
             for (let i = 0; i < 12; i++) {
               this.tgArray.push(tianGan[index]);
               index = (index + 1) % tianGan.length;
@@ -804,7 +1234,7 @@
             let index = firstMonthHouseIndex;  
             let reIndex = 0;          
             let strSheng = '(身)';
-            console.log('命/身：' + firstMonthHouseIndex + ',' + setShengGongIndex)
+            //console.log('命/身：' + firstMonthHouseIndex + ',' + setShengGongIndex)
             for (let i = 0; i < 12; i++) {
               if (i == setShengGongIndex) 
                 this.thArray.push(strSheng.concat(twelveHouse[index]));
@@ -818,7 +1248,215 @@
                 index = twelveHouse.length - reIndex;
               }
             }
+          },   
+          // 確認出生年月日時天干地支五行
+          CheckTianGanZhiWuXing(wuxing) {
+            if (wuxing === '金') {
+              this.WuXing_Jin = Number(this.WuXing_Jin) + 1;
+              console.log('CheckTianGanZhiWuXing-WuXing_Jin is ' + this.WuXing_Jin);
+            }
+            if (wuxing === '水')
+              this.WuXing_Shui = Number(this.WuXing_Shui) + 1;
+            if (wuxing === '木')
+              this.WuXing_Mu = Number(this.WuXing_Mu) + 1;
+            if (wuxing === '火')
+              this.WuXing_Huo = Number(this.WuXing_Huo) + 1;
+            if (wuxing === '土')
+              this.WuXing_Tu = Number(this.WuXing_Tu) + 1;
           },
+          fillWuXingCountArray() {
+            this.WuXingCountArray = [];
+            this.WuXingCountArray.push(this.WuXing_Jin);
+            this.WuXingCountArray.push(this.WuXing_Shui);
+            this.WuXingCountArray.push(this.WuXing_Mu);
+            this.WuXingCountArray.push(this.WuXing_Huo);
+            this.WuXingCountArray.push(this.WuXing_Tu);
+          }, 
+          // 安北斗群星
+          fillBG(index) {
+            let reIndex = 0;
+            for (let i = 0; i < BeidouGroup.length; i++) {
+              //console.log('BeidouGroup index and value is ' + index + ',' + BeidouGroup[i]);
+              if (BeidouGroup[i].length != 0)
+                this.fillXingYaoInTweleveHouse(BeidouGroup[i], index);
+              if (index > 0)
+                index = (index - 1) % twelveHouse.length;
+              else {
+                reIndex++;
+                index = twelveHouse.length - reIndex;
+              }
+            }
+          },  
+          // 安南斗群星
+          fillNG(index) {            
+            for (let i = 0; i < NandouGroup.length; i++) {
+              //console.log('南斗群星: ' + NandouGroup[i] + ',index is ' + index);
+              if (NandouGroup[i].length != 0)
+                this.fillXingYaoInTweleveHouse(NandouGroup[i], index);              
+              index = (index + 1) % twelveHouse.length;
+              
+            }
+          },                         
+          // 安十二長生
+          fillTCS(IsReverse, CSIndex) {
+             this.cleartcsArray();
+             let index = CSIndex;
+             let reIndex = 0;
+             //console.log('show fillTCS!!');
+              for (let i = 0; i < 12; i++) {  
+                this.tcsArray.push(tweleveChangSheng[index]);                              
+                if (IsReverse) {
+                  if (index > 0) {
+                    index = (index - 1) % tweleveChangSheng.length;
+                  } else {
+                    reIndex++;
+                    index = tweleveChangSheng.length - reIndex;
+                  }
+                } else {
+                  if (index < tweleveChangSheng.length) {
+                    index = (index + 1) % tweleveChangSheng.length;
+                  } else {                    
+                    index = reIndex;
+                    reIndex++;
+                  }
+                }
+              }             
+          },
+          // 安將前十二星
+          fillJQ(index) {  
+            let SuiYiIndex, HuaGaiIndex, XianChiIndex;          
+            // 歲驛(將星+2)
+            SuiYiIndex = index + 2;
+            if (SuiYiIndex >= 12)
+              SuiYiIndex = SuiYiIndex - 12;
+            // 華蓋(將星+4)
+            HuaGaiIndex = index + 4;
+            if (HuaGaiIndex >= 12)
+              HuaGaiIndex = HuaGaiIndex - 12;
+            // 咸池(將星+9)
+            XianChiIndex = index + 9;
+            if (XianChiIndex >= 12)
+              XianChiIndex = XianChiIndex - 12;
+            
+            this.jqArray = [];
+            for (let i = 0; i < 12; i++) {
+              if (i === SuiYiIndex)
+                this.jqArray.push('歲驛');
+              else if (i === HuaGaiIndex)
+                this.jqArray.push('華蓋');
+              else if (i === XianChiIndex)
+                this.jqArray.push('咸池');
+              else
+                this.jqArray.push('');              
+            }
+          },
+          // 安歲前十二星
+          fillSQ(index) {
+            let SangMenIndex, GuanFuIndex, BaiHuIndex;
+            this.sqArray = [];
+            // 喪門(歲建+2)
+            SangMenIndex = index + 2;            
+            if (SangMenIndex >= 12)
+              SangMenIndex = SangMenIndex - 12;        
+            
+            // 官符(歲建+4)
+            GuanFuIndex = index + 4;
+            if (GuanFuIndex >= 12)
+            GuanFuIndex = GuanFuIndex - 12;
+
+            // 白虎(歲建+8)
+            BaiHuIndex = index + 8;
+            if (BaiHuIndex >= 12)
+              BaiHuIndex = BaiHuIndex - 12;
+
+            this.sqArray = [];
+            for (let i = 0; i < 12; i++) {
+              if (i === SangMenIndex)
+                this.sqArray.push('喪門');
+              else if (i === GuanFuIndex)
+                this.sqArray.push('官符');
+              else if (i === BaiHuIndex)
+                this.sqArray.push('白虎');
+              else
+                this.sqArray.push('');
+            }
+          },
+          // 安大限
+          fillDX(dataArray, firstindex, isReverse) {
+            this.dxArray = [];
+            let index = 0; 
+            let reIndex = 0;
+            if (isReverse)
+              index = firstindex;
+            else
+              index = dataArray.length - firstindex;
+            for (let i = 0; i < 12; i++) { 
+              this.dxArray.push(dataArray[index]);
+              if (isReverse) {               
+                if (index > 0) {
+                  index = (index - 1) % dataArray.length;
+                } else {
+                  reIndex++;
+                  index = dataArray.length - reIndex;
+                }
+              } else {                
+                index = (index + 1) % dataArray.length;
+              }
+            }
+            //console.log('安大限:' + this.dxArray);
+          }, 
+          findSiHuaStar(index) {
+            //console.log('showSiHuiStarIndex is ' + index);
+            this.sihuaArray = [];            
+            this.sihuaArray.push(HuiLu[index]);
+            this.sihuaArray.push(HuiQuan[index]);
+            this.sihuaArray.push(HuiKe[index]);
+            this.sihuaArray.push(HuiJi[index]);          
+          },          
+          // 將確認位置的星耀放置對應之十二宮位
+          fillXingYaoInTweleveHouse(xingyaoName, index) {
+            let SiHuaStr = checkStarIsSiHua(xingyaoName, this.sihuaArray);
+            switch (index) {
+              case 10:
+                this.ziArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 11:
+                this.chouArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 0:
+                this.yinArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 1:
+                this.maoArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 2:
+                this.chenArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 3:
+                this.siArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 4:
+                this.wuArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 5:
+                this.weiArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 6:
+                this.shenArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 7:
+                this.youArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 8:
+                this.xuArray.push(xingyaoName+SiHuaStr);
+                break;
+              case 9:
+                this.haiArray.push(xingyaoName+SiHuaStr);
+                break;
+              default:
+                return null;
+            }                        
+          },       
           calculate() {
             console.log(this.birthYear);
             console.log(this.birthMonth);
@@ -826,7 +1464,7 @@
             console.log(this.sex);
             console.log(this.calendar);
             console.log(this.leap);
-            let solar, theLunar, isLeap, theLeapMonth, theLunarMonth;
+            let solar, theLunar, isLeap, theLeapMonth, theLunarMonth, monthGan, monthZhi;
             isLeap = false;
             // 國曆農曆轉換
             if (this.calendar === 'solar') {
@@ -840,7 +1478,7 @@
                 theSolar = Solar.fromYmdHms(this.birthYear + 1911 , this.birthMonth, this.birthDay, this.birthHour, 0, 0);
                 theLunar = theSolar.getLunar();
                 theLunarMonth = theLunar.getMonth();
-              }
+              }              
             } else {
                 if (this.leap) {
                   isLeap = true;
@@ -857,18 +1495,22 @@
             // 生年干支
             yearGan = theLunar.getYearGan();
             yearZhi = theLunar.getYearZhi();
-            console.log(yearGan);
+            //console.log(yearGan);
             this.fillTG(yearGan);
-            console.log(this.tgArray);
+            //console.log(this.tgArray);
+
+            this.ShengNianTG = yearGan.concat(yearZhi);
 
             // 生月干支        
             monthGan = this.tgArray[theLunarMonth-1];     
             monthZhi = twelveTGHouse[theLunarMonth-1];
+
+            this.ShengYueTG = monthGan.concat(monthZhi);
             
             // 生日干支
             theLunarYear = theLunar.getYear();
             theLunarDay = theLunar.getDay();
-            console.log('出生月份（農）：' + theLunarMonth);
+            //console.log('出生月份（農）：' + theLunarMonth);
             let countBirthDay = theLunarDay;
             if (isLeap) {                     
               theLunarLastMonth = theLunarMonth;
@@ -886,18 +1528,32 @@
               firstGanDayindex = (firstGanDayindex + 1) % tianGan.length;
               firstZhiDayindex = (firstZhiDayindex + 1) % twelveTGHouse.length;
             }
-            console.log('生日干支：' + tianGan[firstGanDayindex] + ',' + twelveTGHouse[firstZhiDayindex]);
+            //console.log('生日干支：' + tianGan[firstGanDayindex] + ',' + twelveTGHouse[firstZhiDayindex]);
+
+            this.ShengRiTG = tianGan[firstGanDayindex].concat(twelveTGHouse[firstZhiDayindex]);
 
             // 生時干支
             //timeGan = theLunar.getTimeGan();  // 不準
-            timeZhi = theLunar.getTimeZhi();
-            timeZhiIndex = diZhi.indexOf(timeZhi);            
+            let timeZhi, timeZhiIndex;
+            if (this.calendar === 'solar' && isLeap) {              
+              timeZhiIndex = parseInt((Number(this.birthHour) + 1)/2);
+              timeZhi = diZhi[timeZhiIndex];           
+              console.log(this.birthHour + ' get solar birthZhi is ' + timeZhiIndex + ',' + timeZhi);   
+            } else {
+              timeZhi = theLunar.getTimeZhi();
+              timeZhiIndex = diZhi.indexOf(timeZhi);            
+            }
             ZiShiGanIndex = getFirstHourTG(firstGanDayindex);              
             for (let i = 0; i < timeZhiIndex; i++) {              
               ZiShiGanIndex = (ZiShiGanIndex + 1) % tianGan.length;
             }
             timeGan = tianGan[ZiShiGanIndex];
-            console.log('生時干支:' + timeGan + ',' + timeZhi);            
+            //console.log('生時干支:' + timeGan + ',' + timeZhi);     
+            
+            this.ShengShiTG = timeGan.concat(timeZhi);                        
+            
+            //this.solarBirth = this.birthYear + '年' + this.birthMonth + '月' + this.birthDay + '日' + timeZhi + '時';
+            this.lunarBirth = this.ShengNianTG + '年' + this.ShengYueTG + '月' + this.ShengRiTG + '日' + timeZhi + '時';
            
 
             tianGan.forEach(function(value, index, array) {              
@@ -952,26 +1608,478 @@
                 MingGongIndex = 12-(theBirthHourIndex-(theLunarMonth-1));              
               }
             }
-            console.log(this.tgArray[MingGongIndex]);
-            console.log(twelveTGHouse[MingGongIndex]);
+            // 命宮天干
+            //console.log(this.tgArray[MingGongIndex]);
+            // 命宮地支
+            //console.log(MingGongIndex + ',' + twelveTGHouse[MingGongIndex]);
+            this.MingGong = this.tgArray[MingGongIndex].concat(twelveTGHouse[MingGongIndex]);
 
             //順算身宮
             if (theBirthHourIndex != 0) {
               console.log(888);
               ShengGongIndex = theBirthHourIndex-(12-theLunarMonth)-1;                                     
             } 
-            console.log('身宮Index：');
-            console.log(this.tgArray[ShengGongIndex]);
-            console.log(twelveTGHouse[ShengGongIndex]);
-            console.log(MingGongIndex + ',' + ShengGongIndex);
+            //console.log('身宮Index：');
+            //console.log(this.tgArray[ShengGongIndex]);
+            //console.log(twelveTGHouse[ShengGongIndex]);
+            
+            this.ShengGong = this.tgArray[ShengGongIndex].concat(twelveTGHouse[ShengGongIndex]);
             
             
             //安十二宮
             this.fillTH(MingGongIndex, ShengGongIndex);
             console.log(this.thArray);
-             
+
+
+            // 定五行局和取六十納音   
+            let MingGongWuXingGu, MingGongNaYin;
+            MingGongWuXingGu = WuXingGu[MingGongWuXing[getMingGongZhiRowForWuXingGu(diZhi.indexOf(twelveTGHouse[MingGongIndex]))][tianGan.indexOf(this.tgArray[MingGongIndex]) / 2]];  
+            MingGongNaYin = NaYin[diZhi.indexOf(twelveTGHouse[MingGongIndex])/2][tianGan.indexOf(this.tgArray[MingGongIndex]) / 2]      
+            //console.log('命宮五行局:' + MingGongWuXingGu);
+            //console.log('命宮六十納音:' + MingGongNaYin);
+
+            this.MGWXGu = MingGongWuXingGu;
+            this.MGNaYin = MingGongNaYin;
+
+            // 取生辰與命宮的五行
+            //d = theLunar.getEightChar();
+            //console.log(d.getYearWuXing() + ', ' + d.getMonthWuXing() + ', ' + d.getDayWuXing() + ', ' + d.getTimeWuXing());                          
+            
+            this.CheckTianGanZhiWuXing(tianGanWuXing[tianGan.indexOf(yearGan)]);
+            //console.log('(五行)生年天干:' + this.WuXing_Jin + ',' + this.WuXing_Shui + ',' + this.WuXing_Mu + ',' + this.WuXing_Huo + ',' + this.WuXing_Tu);
+            this.CheckTianGanZhiWuXing(diZhiWuXing[diZhi.indexOf(yearZhi)]);            
+
+            this.CheckTianGanZhiWuXing(tianGanWuXing[tianGan.indexOf(monthGan)]);
+            this.CheckTianGanZhiWuXing(diZhiWuXing[diZhi.indexOf(monthZhi)]);
+
+            this.CheckTianGanZhiWuXing(tianGanWuXing[firstGanDayindex]);
+            this.CheckTianGanZhiWuXing(diZhiWuXing[diZhi.indexOf(twelveTGHouse[firstZhiDayindex])]);
+            
+            this.CheckTianGanZhiWuXing(tianGanWuXing[tianGan.indexOf(timeGan)]);                  
+            this.CheckTianGanZhiWuXing(diZhiWuXing[diZhi.indexOf(timeZhi)]);
+
+            this.CheckTianGanZhiWuXing(tianGanWuXing[tianGan.indexOf(this.tgArray[MingGongIndex])]);                  
+            this.CheckTianGanZhiWuXing(diZhiWuXing[diZhi.indexOf(twelveTGHouse[MingGongIndex])]);      
+            
+            this.fillWuXingCountArray();
+            
+            console.log('WuXingCountArray is ' + this.WuXingCountArray);
+
+            // 清空要放入十二宮的陣列
+            this.clearTweleveArray();
+
+            // 四化星
+            // 以生年天干化出
+            // let yearGanIndex , HuiLuStar, HuiQuanStar, HuiKeStar, HuiJiStar;
+            let yearGanIndex = tianGan.indexOf(yearGan);
+            this.findSiHuaStar(yearGanIndex);
+            console.log('四化星(祿/權/科/忌):' + this.sihuaArray[0] + '/' + this.sihuaArray[1] + '/' + this.sihuaArray[2] + '/' + this.sihuaArray[3]);
+            //HuiLuStar = HuiLu[yearGanIndex];
+            //HuiQuanStar = HuiQuan[yearGanIndex];
+            //HuiKeStar = HuiKe[yearGanIndex];
+            //HuiJiStar = HuiJi[yearGanIndex]; 
+
+            // 安紫微星
+            GuNumber = WuXingGu.indexOf(MingGongWuXingGu) + 2;  //五行局數            
+            quotient = parseInt((countBirthDay - 1) / GuNumber);  // 商
+            residue = (countBirthDay - 1) % GuNumber;   // 餘數
+            //console.log(GuNumber + ',' + quotient + ',' + residue);
+            ZhiStartIndex = ZhiStart(GuNumber - residue);  //求地支起算點
+            index = ZhiStartIndex;
+            for (let i = 0; i <= quotient; i++) {              
+              index = (index + 1) % diZhi.length;
+            }
+            //console.log('countBirthDay is ' + countBirthDay);
+            if (index === 0)
+              index = 12;            
+            console.log('紫微星:' + twelveTGHouse[index-1]);
+
+            //this.fillXingYaoInTweleveHouse('紫微', index-1);
             
 
+            // 安北斗群星
+            // 紫微天機逆行,隔一陽武天同當,再隔二位廉貞地,空三復見紫微星
+            this.fillBG(index-1);
+
+            // 安天府星 mapping tweleveTGHouse
+            TianFuIndex = TianFu[diZhi.indexOf(twelveTGHouse[index-1])];
+            console.log('天府星:' + twelveTGHouse[TianFuIndex]);
+            
+            //this.fillXingYaoInTweleveHouse('天府', TianFuIndex);
+
+            // 安南斗群星
+            this.fillNG(TianFuIndex);
+
+            // 安時系星(文昌,文曲,地空,地劫)
+            let timeXuIndex, timeChenIndex, timeHaiIndex, timeYouIndex, timeChouIndex, timeYinIndex, timeShenIndex, timeWuIndex, timeMaoIndex;
+            let ZiShiZhiIndex, WenChengIndex, WenQuIndex, EmptyIndex, RaidIndex;            
+            timeXuIndex = diZhi.indexOf('戌');  // 10
+            timeChenIndex = diZhi.indexOf('辰'); // 4
+            timeHaiIndex = diZhi.indexOf('亥');  // 11
+            timeYouIndex = diZhi.indexOf('酉');  // 9
+            timeChouIndex = diZhi.indexOf('丑');  // 1
+            timeYinIndex = diZhi.indexOf('寅');  // 2 
+            timeShenIndex = diZhi.indexOf('申');  // 8
+            timeWuIndex = diZhi.indexOf('午');  // 6
+            timeMaoIndex = diZhi.indexOf('卯');  // 3
+            ZiShiZhiIndex = diZhi.indexOf(timeZhi);
+
+            // 文昌逆向
+            if (ZiShiZhiIndex > timeXuIndex) 
+              WenChengIndex = timeXuIndex + (ZiShiZhiIndex - timeXuIndex);
+            else 
+              WenChengIndex = timeXuIndex - ZiShiZhiIndex;
+            
+            // 文曲順向
+            WenQuIndex = timeChenIndex + ZiShiZhiIndex;
+            if (WenQuIndex >= 12)
+              WenQuIndex = WenQuIndex - 12;            
+
+            // 地空逆向              
+            EmptyIndex = timeHaiIndex - ZiShiZhiIndex;
+            
+            // 地劫順向            
+            RaidIndex = timeHaiIndex - (12 - ZiShiZhiIndex);          
+                   
+            console.log('文昌:' + diZhi[WenChengIndex]);
+            console.log('文曲:' + diZhi[WenQuIndex]);
+            console.log('地空:' + diZhi[EmptyIndex]);
+            console.log('地劫:' + diZhi[RaidIndex]);            
+
+            if (WenChengIndex === 0 || WenChengIndex === 1)
+              this.fillXingYaoInTweleveHouse('文昌', 10 + WenChengIndex);
+            else
+              this.fillXingYaoInTweleveHouse('文昌', WenChengIndex-2);
+            if (WenQuIndex === 0 || WenQuIndex === 1)
+              this.fillXingYaoInTweleveHouse('文曲', 10 + WenQuIndex);
+            else
+              this.fillXingYaoInTweleveHouse('文曲', WenQuIndex-2);
+            if (EmptyIndex === 0 || EmptyIndex === 1)
+              this.fillXingYaoInTweleveHouse('地空', 10 + EmptyIndex);
+            else
+              this.fillXingYaoInTweleveHouse('地空', EmptyIndex-2);
+            if (RaidIndex === 0 || RaidIndex === 1)
+              this.fillXingYaoInTweleveHouse('地劫', 10 + RaidIndex);
+            else
+              this.fillXingYaoInTweleveHouse('地劫', RaidIndex-2);
+            
+
+            // 安月今星(左輔,右弼,天刑,天姚,陰煞,天馬)
+            let ZuoIndex, YouIndex, TianXingIndex, TianYaoIndex, YinShaIndex, TianMaIndex, monthZhiIndex;
+            let TuoLuoIndex, LuCunIndex, QingYangIndex, TianKuiIndex, TianYueIndex;
+            let HuoXingIndex, ReiSeiIndex, PoSuiIndex, GuChenIndex, GuaSuIndex, DaHaoIndex, JingXingIndex;
+            monthZhiIndex = diZhi.indexOf(twelveTGHouse[theLunarMonth-1]) - 1;
+
+            // 左輔(辰上起正月順行至生月)
+            //console.log('monthZhiIndex is ' + monthZhiIndex);
+            ZuoIndex = timeChenIndex + monthZhiIndex - 1;
+            if (ZuoIndex >= 12)
+              ZuoIndex = ZuoIndex - 12;
+
+            // 右弼(戌上起正月逆行至生月)
+            if (monthZhiIndex > timeXuIndex) {
+              YouIndex = timeXuIndex + (monthZhiIndex - timeXuIndex) + 1;
+              if (YouIndex >= 12)
+                YouIndex = YouIndex - 12;
+            } else 
+              YouIndex = timeXuIndex - monthZhiIndex + 1;
+
+            // 天刑(酉上起正月順行至生月)            
+            TianXingIndex = monthZhiIndex + timeYouIndex- 1;
+            if (TianXingIndex >= 12)
+              TianXingIndex = TianXingIndex - 12;            
+
+            // 天姚(丑上起正月順行至生月)            
+            TianYaoIndex = monthZhiIndex + timeChouIndex- 1;
+            if (TianYaoIndex >= 12)
+              TianYaoIndex = TianYaoIndex - 12;
+
+            // 陰煞(寅上起正月逆行,隔一宮算一月)
+            if (monthZhiIndex > timeYinIndex) {
+              YinShaIndex = 12 - 2 * (monthZhiIndex - timeYinIndex);              
+              if (YinShaIndex < 0)
+              YinShaIndex = 12 + YinShaIndex;
+            } else 
+              YinShaIndex = timeYinIndex * (timeYinIndex - monthZhiIndex);
+
+            // 天馬(申上起正月逆行,隔二宮算一月,即[申巳寅亥])
+            TianMaIndex = getTianMaZhi(monthZhiIndex);   
+            //console.log('天馬index:' + TianMaIndex)         
+
+            console.log('左輔:' + diZhi[ZuoIndex]);
+            console.log('右弼:' + diZhi[YouIndex]);
+            console.log('天刑:' + diZhi[TianXingIndex]);
+            console.log('天姚:' + diZhi[TianYaoIndex]);
+            console.log('陰煞:' + diZhi[YinShaIndex]);
+            console.log('天馬:' + diZhi[TianMaIndex]);            
+            
+            if (ZuoIndex === 0 || ZuoIndex === 1)
+              this.fillXingYaoInTweleveHouse('左輔', 10 + ZuoIndex);
+            else
+              this.fillXingYaoInTweleveHouse('左輔', ZuoIndex-2);
+            if (YouIndex === 0 || YouIndex === 1)
+              this.fillXingYaoInTweleveHouse('右弼', 10 + YouIndex);
+            else
+              this.fillXingYaoInTweleveHouse('右弼', YouIndex-2);
+            if (TianXingIndex === 0 || TianXingIndex === 1)
+              this.fillXingYaoInTweleveHouse('天刑', 10 + TianXingIndex);
+            else
+              this.fillXingYaoInTweleveHouse('天刑', TianXingIndex-2);
+            if (TianYaoIndex === 0 || TianYaoIndex === 1)
+              this.fillXingYaoInTweleveHouse('天姚', 10 + TianYaoIndex);
+            else
+              this.fillXingYaoInTweleveHouse('天姚', TianYaoIndex-2);
+            if (YinShaIndex === 0 || YinShaIndex === 1)
+              this.fillXingYaoInTweleveHouse('陰煞', 10 + YinShaIndex);
+            else
+              this.fillXingYaoInTweleveHouse('陰煞', YinShaIndex-2);
+            if (TianMaIndex === 0 || TianMaIndex === 1)
+              this.fillXingYaoInTweleveHouse('天馬', 10 + TianMaIndex);
+            else
+              this.fillXingYaoInTweleveHouse('天馬', TianMaIndex-2);
+
+            // 安生年干星
+            // 祿存
+            //console.log('yearGan is ' + yearGan);
+            LuCunIndex = LuCun[tianGan.indexOf(yearGan)]; 
+            //console.log('lucunindex is ' + tianGan.indexOf('辛'));           
+
+            // 陀羅,祿存,擎羊順行
+            TuoLuoIndex = LuCunIndex - 1;
+            QingYangIndex = LuCunIndex + 1;
+
+            console.log('陀羅:' + twelveTGHouse[TuoLuoIndex]);
+            console.log('祿存:' + twelveTGHouse[LuCunIndex]);
+            console.log('擎羊:' + twelveTGHouse[QingYangIndex]);
+
+            this.fillXingYaoInTweleveHouse('陀羅', TuoLuoIndex);
+            this.fillXingYaoInTweleveHouse('祿存', LuCunIndex);
+            this.fillXingYaoInTweleveHouse('擎羊', QingYangIndex);
+
+            // 天魁,天鉞
+            TianKuiIndex = getTianKuiIndex(tianGan.indexOf(yearGan));
+            TianYueIndex = getTianYueIndex(tianGan.indexOf(yearGan));
+            console.log('天魁:' + twelveTGHouse[TianKuiIndex]);
+            console.log('天鉞:' + twelveTGHouse[TianYueIndex]);
+
+            this.fillXingYaoInTweleveHouse('天魁', TianKuiIndex);
+            this.fillXingYaoInTweleveHouse('天鉞', TianYueIndex);        
+
+            // 安生年支星
+            // 天哭, 天虛, 紅鸞, 天喜, 龍池, 鳳閣
+            // 天哭(午上起子 逆行至生年支)            
+            yearZhiIndex = diZhi.indexOf(yearZhi);    
+            //console.log('yearZhiIndex is ' + yearZhiIndex);        
+            if (yearZhiIndex > timeWuIndex) {
+              TianKuIndex = 12 - (yearZhiIndex - timeWuIndex);
+              //TianKuIndex = timeWuIndex + (yearZhiIndex - timeWuIndex);
+              if (TianKuIndex >= 12)
+                TianKuIndex = TianKuIndex - 12;
+            } else 
+              TianKuIndex = timeWuIndex - yearZhiIndex;
+            
+            // 天虛(午上起子 順行至生年支)
+            TianXuIndex = yearZhiIndex + timeWuIndex;
+            if (TianXuIndex >= 12)
+              TianXuIndex = TianXuIndex - 12; 
+
+            // 紅鸞(卯上起子 逆行至生年支)
+            if (yearZhiIndex > timeMaoIndex) {
+              HongLuanIndex = 12 - (yearZhiIndex - timeMaoIndex);
+              //HongLuanIndex = timeMaoIndex + (yearZhiIndex - timeMaoIndex);
+              if (HongLuanIndex >= 12)
+                HongLuanIndex = HongLuanIndex - 12;
+            } else 
+              HongLuanIndex = timeMaoIndex - yearZhiIndex;
+
+            // 天喜(紅鸞)
+            TianXiIndex = HongLuanIndex + 6;
+            if (TianXiIndex >= 12)
+              TianXiIndex = TianXiIndex - 12;
+
+            // 龍池(辰上起子 順行至生年支)
+            LongChiIndex = yearZhiIndex + timeChenIndex;
+            if (LongChiIndex >= 12)
+            LongChiIndex = LongChiIndex - 12; 
+
+            // 鳳閣(戌上起子 逆行至生年支)
+            if (yearZhiIndex > timeXuIndex) {
+              FengGeIndex = timeXuIndex + (yearZhiIndex - timeXuIndex);
+              if (FengGeIndex >= 12)
+                FengGeIndex = FengGeIndex - 12;
+            } else 
+              FengGeIndex = timeXuIndex - yearZhiIndex;
+
+            console.log('天哭:' + diZhi[TianKuIndex]);
+            console.log('天虛:' + diZhi[TianXuIndex]);
+            console.log('紅鸞:' + diZhi[HongLuanIndex]); //??
+            console.log('天喜:' + diZhi[TianXiIndex]);  //??
+            console.log('龍池:' + diZhi[LongChiIndex]);
+            console.log('鳳閣:' + diZhi[FengGeIndex]);
+
+            if (TianKuIndex === 0 || TianKuIndex === 1)
+              this.fillXingYaoInTweleveHouse('天哭', 10 + TianKuIndex);
+            else
+              this.fillXingYaoInTweleveHouse('天哭', TianKuIndex-2);
+            
+            if (TianXuIndex === 0 || TianXuIndex === 1)
+              this.fillXingYaoInTweleveHouse('天虛', 10 + TianXuIndex);
+            else
+              this.fillXingYaoInTweleveHouse('天虛', TianXuIndex-2);
+
+            if (HongLuanIndex === 0 || HongLuanIndex === 1)
+              this.fillXingYaoInTweleveHouse('紅鸞', 10 + HongLuanIndex);
+            else
+              this.fillXingYaoInTweleveHouse('紅鸞', HongLuanIndex-2);
+
+            if (TianXiIndex === 0 || TianXiIndex === 1)
+              this.fillXingYaoInTweleveHouse('天喜', 10 + TianXiIndex);
+            else
+              this.fillXingYaoInTweleveHouse('天喜', TianXiIndex-2);
+            
+            if (LongChiIndex === 0 || LongChiIndex === 1)
+              this.fillXingYaoInTweleveHouse('龍池', 10 + LongChiIndex);
+            else
+              this.fillXingYaoInTweleveHouse('龍池', LongChiIndex-2);
+
+            if (FengGeIndex === 0 || FengGeIndex === 1)
+              this.fillXingYaoInTweleveHouse('鳳閣', 10 + FengGeIndex);
+            else
+              this.fillXingYaoInTweleveHouse('鳳閣', FengGeIndex-2);
+            
+
+            // 安火星,鈴星,破碎,孤辰,寡宿,大耗
+            let startHuoXing, startReiSei;
+            // 火星(起子順行至生時) timeZhiIndex            
+            startHuoXing = getHuoXingStartIndex(yearZhiIndex);
+            //console.log('startHuoXing is ' + startHuoXing);
+            HuoXingIndex = timeZhiIndex + startHuoXing;
+            if (HuoXingIndex >= 12)
+              HuoXingIndex = HuoXingIndex - 12;
+
+            // 鈴星(起子順行至生時) timeZhiIndex
+            startReiSei = getReiSeiStartIndex(yearZhiIndex);
+            ReiSeiIndex = timeZhiIndex + startReiSei;
+            if (ReiSeiIndex >= 12)
+              ReiSeiIndex = ReiSeiIndex - 12;
+
+            // 破碎
+            PoSuiIndex = getPoSuiIndex(yearZhiIndex);
+
+            // 孤辰
+            GuChenIndex = getGuChenIndex(yearZhiIndex);
+
+            // 寡宿
+            GuaSuIndex = getGuaSuIndex(yearZhiIndex);
+
+            // 大耗(生年地支對宮)
+            DaHaoIndex = yearZhiIndex + 6;
+            if (DaHaoIndex >= 12)
+              DaHaoIndex = DaHaoIndex - 12;
+
+            console.log('火星:' + diZhi[HuoXingIndex]);
+            console.log('鈴星:' + diZhi[ReiSeiIndex]);
+            console.log('破碎:' + diZhi[PoSuiIndex]);
+            console.log('孤辰:' + diZhi[GuChenIndex]);
+            console.log('寡宿:' + diZhi[GuaSuIndex]);
+            console.log('大耗:' + diZhi[DaHaoIndex]);
+
+            if (HuoXingIndex === 0 || HuoXingIndex === 1)
+              this.fillXingYaoInTweleveHouse('火星', 10 + HuoXingIndex);
+            else
+              this.fillXingYaoInTweleveHouse('火星', HuoXingIndex-2);
+            if (ReiSeiIndex === 0 || ReiSeiIndex === 1)
+              this.fillXingYaoInTweleveHouse('鈴星', 10 + ReiSeiIndex);
+            else
+              this.fillXingYaoInTweleveHouse('鈴星', ReiSeiIndex-2);
+
+            if (PoSuiIndex === 0 || PoSuiIndex === 1)
+              this.fillXingYaoInTweleveHouse('破碎', 10 + PoSuiIndex);
+            else
+              this.fillXingYaoInTweleveHouse('破碎', PoSuiIndex-2);
+
+            if (GuChenIndex === 0 || GuChenIndex === 1)
+              this.fillXingYaoInTweleveHouse('孤辰', 10 + GuChenIndex);
+            else
+              this.fillXingYaoInTweleveHouse('孤辰', GuChenIndex-2);
+
+            if (GuaSuIndex === 0 || GuaSuIndex === 1)
+              this.fillXingYaoInTweleveHouse('寡宿', 10 + GuaSuIndex);
+            else
+              this.fillXingYaoInTweleveHouse('寡宿', GuaSuIndex-2);
+
+            if (DaHaoIndex === 0 || DaHaoIndex === 1)
+              this.fillXingYaoInTweleveHouse('大耗', 10 + DaHaoIndex);
+            else
+              this.fillXingYaoInTweleveHouse('大耗', DaHaoIndex-2);
+            
+            
+            // 安將前十二星(歲驛,華蓋,咸池)
+            // 將星    
+            JingXingIndex = getJiangXingIndex(twelveTGHouse.indexOf(yearZhi));      
+            this.fillJQ(JingXingIndex);
+            //console.log('將前十二星:' + JingXingIndex + '; ' + this.jqArray);            
+
+            // 安歲前十二星(喪門,官符,白虎) SangMenIndex, GuanFuIndex, BaiHuIndex
+            this.fillSQ(twelveTGHouse.indexOf(yearZhi));  
+            //console.log('歲前十二星:' + this.sqArray);            
+
+            // 判斷陰陽男女 YinYangSex
+            YinYang = CheckYinYangSex(tianGan.indexOf(yearGan));
+            if (YinYang === 0)
+              YinYangSex = '陽';
+            else 
+              YinYangSex = '陰';
+            if (this.gendertype === 'male')
+              YinYangSex += '男';
+            else
+              YinYangSex += '女';
+            
+            console.log(this.gendertype + ', sex type is ' + YinYangSex);
+            this.yinyangGender = YinYangSex;
+
+            // 安十二長生 Chángshēng
+            // 五行局推算長生宮位 MingGongWuXingGu
+            let ChangShengIndex;
+            let MingZhuStar, ShenZhuStar, DaXian;
+            ChangShengIndex = getChangShengIndex(WuXingGu.indexOf(MingGongWuXingGu));
+
+            // 排十二長生陽男陰女順行,陰男陽女逆行
+            // 長生,沐浴,冠帶,臨官,帝旺,衰,病,死,墓,絕,胎,養 
+            let isReverse;
+            if ((YinYang === 0 && this.gendertype === 'male') || (YinYang === 1 && this.gendertype === 'female'))
+              isReverse = false;
+            else
+              isReverse = true;
+
+            this.fillTCS(isReverse, ChangShengIndex);
+
+            // 命主星
+            MingZhuStar = getMingZhu(MingGongIndex);
+            this.MingZhu = MingZhuStar;
+
+            // 身主星
+            ShenZhuStar = getShenZhu(yearZhiIndex);
+            this.ShengZhu = ShenZhuStar;
+
+            // 起大限 
+            // 以命宮位置起初限,陽男陰女順行,陰男陽女逆行
+            DaXian = getDaXian(WuXingGu.indexOf(MingGongWuXingGu));
+            console.log('大限:' + DaXian);
+            this.fillDX(DaXian, MingGongIndex, isReverse);
+
+            console.log('show XingYaoInTweleveHouse ZiArray is ' + this.ziArray);
+            console.log('show XingYaoInTweleveHouse ChouArray is ' + this.chouArray);
+            console.log('show XingYaoInTweleveHouse YinArray is ' + this.yinArray);
+            console.log('show XingYaoInTweleveHouse MaoArray is ' + this.maoArray);
+            console.log('show XingYaoInTweleveHouse ChenArray is ' + this.chenArray);
+            console.log('show XingYaoInTweleveHouse SiArray is ' + this.siArray);
+            console.log('show XingYaoInTweleveHouse WuArray is ' + this.wuArray);
+            console.log('show XingYaoInTweleveHouse WeiArray is ' + this.weiArray);
+            console.log('show XingYaoInTweleveHouse ShenArray is ' + this.shenArray);
+            console.log('show XingYaoInTweleveHouse YouArray is ' + this.youArray);
+            console.log('show XingYaoInTweleveHouse XuArray is ' + this.xuArray);
+            console.log('show XingYaoInTweleveHouse HaiArray is ' + this.haiArray);
           },
           addToArray(item) {
             this.tgArray.push(item);
@@ -982,9 +2090,33 @@
           clearTHArray() {
             this.thArray = [];
           },
+          clearBGArray() {
+            this.bgArray = [];
+          },
+          clearNGArray() {
+            this.ngArray = [];
+          },
           addtoTHArray(item) {
             this.thArray.push(item);
-          }
+          },
+          cleartcsArray() {
+            this.tcsArray = [];
+          },
+          clearTweleveArray() {
+            this.ziArray = [];
+            this.chouArray = [];            
+            this.yinArray = [];
+            this.maoArray = [];
+            this.chenArray = [];
+            this.siArray = [];
+            this.wuArray = [];
+            this.weiArray = [];
+            this.shenArray = [];
+            this.youArray = [];
+            this.xuArray = [];
+            this.haiArray = [];
+          }        
+
         },
         mounted() {
           const lunar = Lunar.fromDate(new Date());
